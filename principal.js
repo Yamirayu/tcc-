@@ -10,6 +10,7 @@ let movies = [
   {
     src:
       "https://images.unsplash.com/photo-1585951237318-9ea5e175b891?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    link: "memoria.html"
   },
   {
     src:
@@ -81,21 +82,71 @@ let movies = [
   {
     src:
       "https://images.unsplash.com/photo-1536300007881-7e482242baa5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    link: "memoria.html"
   },
+];
+let descriptions = [
+  "Aventura épica nas montanhas geladas.",
+  "Drama intenso sobre escolhas difíceis.",
+  "Comédia leve para toda a família.",
+  "Suspense psicológico que prende do início ao fim.",
+  "Documentário revelador sobre tecnologia.",
+  "Romance em meio ao caos urbano.",
+  "História inspiradora de superação.",
+  "Mistério envolvente com reviravoltas.",
+  "Animação divertida e educativa.",
+  "Ficção científica com visual impressionante.",
+  "Narrativa poética sobre amizade.",
+  "Exploração profunda da natureza humana.",
+  "Viagem emocionante pelo desconhecido.",
+  "Retrato realista da juventude moderna.",
+  "Ação explosiva e adrenalina pura.",
+  "Reflexão sobre o futuro da sociedade.",
+  "Humor ácido e inteligente.",
+  "Trama envolvente com personagens marcantes."
+];
+
+let ratings = [
+  "Livre", "10 anos", "12 anos", "14 anos", "16 anos", "99 anos", "L", "1", "2 anos", "4 anos", "6 anos", "111 anos", "9", "19", "29 anos", "49 anos", "69 anos", "1119 anos"
+];
+
+let matches = [
+  97, 85, 92, 88, 90, 95, 80, 99, 87, 93, 91, 89, 96, 84, 86, 94, 98, 82
 ];
 
 // Fill the slider with all the movies in the "movies" array
 function populateSlider() {
-  movies.forEach((image) => {
-    // Clone the initial movie thats included in the html, then replace the image with a different one
+  movies.forEach((image, index) => {
     const newMovie = document.getElementById("movie0");
     let clone = newMovie.cloneNode(true);
+
+    // Cria o link
+    let link = document.createElement("a");
+    link.href = image.link;
+    link.target = "_blank"; // abre em nova aba
+
+    // Atualiza imagem
     let img = clone.querySelector("img");
     img.src = image.src;
+
+    // Envolve a imagem com o link
+    img.parentNode.replaceChild(link, img);
+    link.appendChild(img);
+
+    // Atualiza texto da descrição
+    let textContainer = clone.querySelector(".description__text-container");
+    textContainer.innerHTML = `
+      <span class="description__match">${matches[index]}</span>
+      <span class="description__rating">${ratings[index % ratings.length]}</span>
+      <span class="description__length"></span>
+      <br><br>
+      <span>${descriptions[index]}</span>
+    `;
 
     slider.insertBefore(clone, slider.childNodes[slider.childNodes.length - 1]);
   });
 }
+
 
 populateSlider();
 populateSlider();
