@@ -1,0 +1,334 @@
+/* ================================
+   VARIÁVEIS GLOBAIS
+================================ */
+:root {
+    --branco: #ffffff;
+    --preto: #00063e;
+    --cinza-claro: #B3B3B3;
+    --cinza-escuro: #333;
+  
+    --largura-jogo: 15.5vw;
+    --altura-jogo: 200px;
+    --largura-seta: 50px;
+    --espacamento-carrossel: 200px;
+  }
+  
+  /* ================================
+     RESET BÁSICO
+  ================================ */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: var(--preto);
+    font-family: 'Arial', sans-serif;
+    color: var(--branco);
+    line-height: 1.6;
+  }
+  
+  /* ================================
+     ÍCONE DE INÍCIO
+  ================================ */
+  .home-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0d4757;
+    border: 2px solid #33544e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ffcc;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  /* ================================
+     CABEÇALHO
+  ================================ */
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  header .logo {
+    color: var(--branco);
+    font-family: 'Arial Black', sans-serif;
+    font-size: 32px;
+    user-select: none;
+  }
+  
+  header nav a {
+    color: var(--cinza-claro);
+    margin-right: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  header nav a:hover {
+    color: var(--branco);
+  }
+
+  /* ================================
+   DESCRIÇÃO DO SITE
+================================ */
+.descricao-site {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 700px;
+    color: var(--branco);
+    display: block;
+  }  
+  
+  /* ================================
+     SEÇÃO PRINCIPAL
+  ================================ */
+  .jogo-destaque {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('../img/capa-house.jpg') center/cover no-repeat;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 50px;
+  }
+  
+  .jogo-destaque .titulo {
+    font-size: 50px;
+    font-family: 'Trebuchet MS', sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .jogo-destaque .descricao {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 700px;
+  }
+  
+  /* ================================
+     BOTÕES PRINCIPAIS
+  ================================ */
+  .botao {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--branco);
+    color: var(--branco);
+    padding: 15px 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-right: 15px;
+  }
+  
+  .botao:hover {
+    background-color: var(--branco);
+    color: var(--preto);
+  }
+  
+  .botao i {
+    margin-right: 10px;
+  }
+  
+  /* ================================
+     CONTAINER GERAL
+  ================================ */
+  .container {
+    position: relative;
+  }
+  
+  /* ================================
+     CARROSSEL DE JOGOS
+  ================================ */
+  .carrossel {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: visible;
+    white-space: nowrap;
+    position: relative;
+    padding-top: var(--espacamento-carrossel);
+    padding-bottom: var(--espacamento-carrossel);
+  }
+  
+  /* ================================
+     INDICADORES DO CARROSSEL
+  ================================ */
+  .indicadores-container {
+    width: 100px;
+    position: absolute;
+    right: 0;
+    top: calc(var(--espacamento-carrossel) - 60px);
+    visibility: hidden;
+  }
+  
+  .indicador {
+    width: 15px;
+    height: 2px;
+    background-color: grey;
+    display: inline-block;
+  }
+  
+  .indicador.ativo {
+    background-color: white;
+  }
+  
+  /* ================================
+     CARTÕES DE JOGO
+  ================================ */
+  .cartao-jogo {
+    margin: 0 10px;
+    width: var(--largura-jogo);
+    height: var(--altura-jogo);
+    display: inline-block;
+    position: relative;
+    color: white;
+    padding: 0 2px;
+    font-size: 0.8rem;
+    transition: all 0.2s ease-in-out;
+    transform-origin: center bottom;
+  }
+  
+  .cartao-jogo:nth-of-type(1) {
+    margin-left: var(--largura-seta);
+  }
+  
+  .cartao-jogo img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  /* ================================
+     DESCRIÇÃO DO JOGO
+  ================================ */
+  .descricao {
+    position: absolute;
+    display: none;
+    z-index: 9999;
+    background-color: #272727;
+    width: var(--largura-jogo);
+    margin-top: -10px;
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    overflow: hidden;
+  }
+  
+  
+  @media only screen and (min-width: 900px) {
+    .cartao-jogo:hover {
+      transform: scale(1.2);
+      z-index: 2;
+    }
+  
+    .cartao-jogo:hover > .descricao {
+      display: block;
+    }
+  
+    .cartao-jogo:hover > img {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  
+  .botoes-descricao {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+  }
+  
+  .texto-descricao {
+    padding: 10px;
+  }
+  
+  .porcentagem-acerto {
+    color: green;
+  }
+  
+  .classificacao {
+    outline: 1px solid white;
+    padding: 0 3px;
+    margin: 0 5px;
+  }
+  
+  .botao-descricao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 8px;
+    margin-right: 5px;
+    border-radius: 100%;
+  }
+  
+  .botao-descricao:hover {
+    border-color: grey;
+    color: grey;
+    cursor: pointer;
+  }
+  
+  .botao-descricao:nth-of-type(5) {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  
+  /* ================================
+     BOTÕES DE NAVEGAÇÃO
+  ================================ */
+  .btn-nav {
+    width: var(--largura-seta);
+    height: var(--altura-jogo);
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    outline: none;
+    border: none;
+    color: white;
+    top: var(--espacamento-carrossel);
+    z-index: 5;
+    visibility: hidden;
+  }
+  
+  #moverEsquerda {
+    left: 0;
+  }
+  
+  #moverDireita {
+    right: 0;
+  }
+  
+  @media only screen and (max-width: 900px) {
+    .btn-nav {
+      display: none;
+    }
+  }
+  
+  @media only screen and (min-width: 901px) {
+    .container:hover .btn-nav,
+    .container:hover .indicadores-container {
+      visibility: visible;
+    }
+  }
+  
+  /* ================================
+     MEDIA QUERIES GERAIS
+  ================================ */
+  @media only screen and (max-width: 1000px) {
+    :root {
+      --largura-jogo: 25vw;
+    }
+  }
+  

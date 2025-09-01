@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R.A.P</title>
+  <link rel="stylesheet" href="CSS/principal.css">
+  <link rel="icon" type="image/png" sizes="64x64" href="static/fav-principal.png">
+  <script src="https://kit.fontawesome.com/a0043d9bc2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <h2 class="logo">R.A.P</h2>
+      <nav>
+        <a href="#">Início</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+        <a href="#">Ajuda</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="jogo-destaque">
+      <div class="container">
+        <h2 class="titulo">Ensino de Lógica de Programação Gamificada</h2>
+        <br>
+        <p class="descricao-site">Transforme o aprendizado em aventura!</p>
+        <p class="descricao-site">Cansado da forma tradicional e monótona de estudar? Acreditamos que o aprendizado pode e deve ser uma jornada
+        emocionante e cheia de descobertas. É por isso que criamos este espaço: para provar que aprender pode ser a
+        parte mais divertida do seu dia.</p>
+
+        <div class="botoes">
+          <button role="button" class="botao">
+            <i class="fas fa-play"></i>
+            Categorias de jogos
+          </button>
+          <button role="button" class="botao">
+            <i class="fas fa-info-circle"></i>
+            Mais informações
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="container">
+    <button type="button" id="moverEsquerda" class="btn-nav">
+      ᐊ
+    </button>
+    <div class="indicadores-container">
+      <div class="indicador ativo" data-index="0"></div>
+      <div class="indicador" data-index="1"></div>
+      <div class="indicador" data-index="2"></div>
+    </div>
+    <div class="carrossel" id="meuCarrossel">
+      <div class="cartao-jogo" id="jogo0">
+        <img
+          src="https://cafans.b-cdn.net/images/Category_126562/subcat_233505/PPxKURQM_2712221437221gpadd.jpg"
+          alt="Imagem do jogo" srcset="">
+        <div class="descricao">
+          <div class="botoes-descricao">
+            <div class="botao-descricao"><i class="fas fa-play"></i></div>
+            <div class="botao-descricao"><i class="fas fa-chevron-down"></i></div>
+          </div>
+          <div class="texto-descricao">
+            <span class="porcentagem-acerto">97%</span>
+            <span class="classificacao">Livre</span>
+            <span class="duracao"></span>
+            <br><br>
+            <span>Explosivo</span>
+            <span>&middot;</span>
+            <span>Empolgante</span>
+            <span>&middot;</span>
+            <span>Família</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" id="moverDireita" class="btn-nav">
+      ᐅ
+    </button>
+  </div>
+
+  <script src="JS/principal.js"></script>
+
+</body>
+</html>

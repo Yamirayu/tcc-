@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo da Memória</title>
+  <link rel="stylesheet" href="CSS/memoria.css" />
+  <link rel="icon" type="image/png" sizes="64x64" href="static/fav-memoria.png">
+</head>
+<body>
+  <h1 class="titulo">Jogo da Memória</h1>
+
+  <div class="home-container">
+    <a href="inicio.html" class="home-icon">🏠</a>
+    <span class="home-text">Retornar ao Início</span>
+  </div>
+
+  <div id="ranking-panel">
+    <h2>🏆 Ranking</h2>
+    <input type="text" id="playerNick" placeholder="Digite seu nome">
+    <button id="saveRank">Salvar no Ranking</button>
+  
+    <table id="ranking-table">
+      <thead>
+        <tr>
+          <th>Nick</th>
+          <th>Tempo</th>
+          <th>Erros</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>  
+
+  <div id="game-area"></div>
+  <button class="restart-btn">🔄 Reiniciar Jogo</button>
+
+  <script src="JS/memoria.js"></script>
+</body>
+</html>
