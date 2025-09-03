@@ -1,0 +1,222 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+    font-family: 'VT323', monospace; 
+    font-size: 30px;   
+  }
+  
+  #container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }  
+
+  #painel-direito {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #palavra {
+    font-size: 2em;
+    letter-spacing: 10px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  #contador-erros {
+    font-weight: bold;
+    color: #d32f2f;
+  }
+  
+  #mensagem {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  
+  #teclado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    max-width: 600px;
+  }
+  
+  #teclado button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 1em;
+    border: 2px solid #00f0ff;
+    border-radius: 5px;
+    background-color: #0a0a0a;
+    color: #00f0ff;
+    box-shadow: 0 0 10px #00f0ff;
+    transition: all 0.3s ease;
+  }
+  
+  #teclado button:hover {
+    background-color: #00f0ff;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px #00f0ff;
+    transform: scale(1.05);
+  }
+  
+  #teclado button.correct {
+    background-color: #00c853;
+    color: white;
+    box-shadow: 0 0 10px #00c853;
+  }
+  
+  #teclado button.wrong {
+    background-color: #d50000;
+    color: white;
+    box-shadow: 0 0 10px #d50000;
+  }  
+  
+  #reiniciar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    padding: 10px 15px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  @keyframes wave {
+    0% { transform: scale(1); box-shadow: 0 0 0px green; }
+    50% { transform: scale(1.2); box-shadow: 0 0 10px lime; }
+    100% { transform: scale(1); box-shadow: 0 0 0px green; }
+  }
+  
+  .letra-acertada {
+    background-color: #00c853;
+    color: white;
+    animation: wave 0.6s ease-in-out;
+  }
+
+  @keyframes quebrar {
+    0% { transform: rotate(0deg); filter: none; }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); filter: grayscale(100%); }
+    75% { transform: rotate(3deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
+  .letra-quebrada {
+    animation: quebrar 0.5s ease-in-out;
+    background-color: #d50000;
+    color: white;
+  }
+  
+  #ranking-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px; /* mais fino */
+    background-color: #0a0a0a;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00f0ff;
+    font-family: 'VT323', monospace;
+  }  
+  
+  #ranking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #cronometro {
+    font-size: 1.2em;
+    color: #00f0ff;
+  }
+  
+  #ranking-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #ranking-list li {
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .ouro {
+    background-color: #FFD700;
+    color: #000;
+  }
+  
+  .prata {
+    background-color: #C0C0C0;
+    color: #000;
+  }
+  
+  .bronze {
+    background-color: #CD7F32;
+    color: #000;
+  }
+  
+  body.desfocado #container {
+    filter: blur(5px);
+    pointer-events: none;
+  }
+  
+  #parabens-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  #parabens-box {
+    background: #0a0a0a;
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px #00f0ff;
+    font-family: 'VT323', monospace;
+  }
+  
+  #parabens-box input {
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 1em;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  #parabens-box button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #00c853;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
