@@ -4,92 +4,93 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>r.a.p</title>
-  <link rel="stylesheet" href="principal.css">
+  <title>R.A.P</title>
+  <link rel="stylesheet" href="CSS/principal.css">
+  <link rel="icon" type="image/png" sizes="64x64" href="static/fav-principal.png">
   <script src="https://kit.fontawesome.com/a0043d9bc2.js" crossorigin="anonymous"></script>
-  <header>
-        <div class="container">
-          <h2 class="logo">R.A.P</h2>
-          <nav>
-            <a href="#">Início</a>
-            <a href="#">nada</a>
-            <a href="#">nada</a>
-            <a href="#">nada</a>
-          </nav>
-        </div>
-      </header>
-    
-      <main>
-        <div class="filme-principal">
-          <div class="container">
-            <h2 class="titulo">Ensino de Lógica de Programação Gamificada
-    
-            </h2><br>
-            <p class="descricao">
-              Transforme o Aprendizado em Aventura!
-    
-              Cansado da forma tradicional e monótona de estudar? Acreditamos que o aprendizado pode e deve ser uma jornada
-              emocionante e cheia de descobertas. É por isso que criamos este espaço: para provar que aprender pode ser a
-              parte mais divertida do seu dia.
-            </p>
-            <div class="botoes">
-             <button role="button" class="botao">
-                <i class="fas fa-play"></i>
-                Categoria do jogos
-              </button>
-              <button role="button" class="botao">
-                <i class="fas fa-info-circle"></i>
-                MAIS INFORMAÇÕES
-              </button>
-            </div>
-          </div>
-        </div>
-      </main>
 </head>
 
 <body>
 
+  <header>
+    <div class="container">
+      <h2 class="logo">R.A.P</h2>
+      <nav>
+        <a href="#">Início</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+        <a href="#">Ajuda</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="jogo-destaque">
+      <div class="container">
+        <h2 class="titulo">Ensino de Lógica de Programação Gamificada</h2>
+        <br>
+        <p class="descricao-site">Transforme o aprendizado em aventura!</p>
+        <p class="descricao-site">Cansado da forma tradicional e monótona de estudar? Acreditamos que o aprendizado pode e deve ser uma jornada
+        emocionante e cheia de descobertas. É por isso que criamos este espaço: para provar que aprender pode ser a
+        parte mais divertida do seu dia.</p>
+
+        <div class="botoes">
+          <a href="https://seusite.com/categorias" target="_blank">
+            <button role="button" class="botao">
+              <i class="fas fa-play"></i>
+              Categorias de jogos
+            </button>
+          </a>
+          <a href="https://seusite.com/sobre" target="_blank">
+            <button role="button" class="botao">
+              <i class="fas fa-info-circle"></i>
+              Mais informações
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <div class="container">
-    <button type="button" id="moveLeft" class="btn-nav">
+    <button type="button" id="moverEsquerda" class="btn-nav">
       ᐊ
     </button>
-    <div class="container-indicators">
-      <div class="indicator active" data-index=0></div>
-      <div class="indicator" data-index=1></div>
-      <div class="indicator" data-index=2></div>
+    <div class="indicadores-container">
+      <div class="indicador ativo" data-index="0"></div>
+      <div class="indicador" data-index="1"></div>
+      <div class="indicador" data-index="2"></div>
     </div>
-    <div class="slider" id="mySlider">
-      <div class="movie" id="movie0">
+    <div class="carrossel" id="meuCarrossel">
+      <div class="cartao-jogo" id="jogo0">
         <img
           src="https://cafans.b-cdn.net/images/Category_126562/subcat_233505/PPxKURQM_2712221437221gpadd.jpg"
-          alt="" srcset="">
-        <div class="description">
-          <div class="description__buttons-container">
-            <div class="description__button"><i class="fas fa-play"></i></div>
-            <div class="description__button"><i class="fas fa-chevron-down"></i></div>
+          alt="Imagem do jogo" srcset="">
+        <div class="descricao">
+          <div class="botoes-descricao">
+            <div class="botao-descricao"><i class="fas fa-play"></i></div>
+            <div class="botao-descricao"><i class="fas fa-chevron-down"></i></div>
           </div>
-          <div class="description__text-container">
-            <span class="description__match">97</span>
-            <span class="description__rating">Livre</span>
-            <span class="description__length"></span>
+          <div class="texto-descricao">
+            <span class="porcentagem-acerto">97%</span>
+            <span class="classificacao">Livre</span>
+            <span class="duracao"></span>
             <br><br>
-            <span>Explosive</span>
+            <span>Explosivo</span>
             <span>&middot;</span>
-            <span>Exciting</span>
+            <span>Empolgante</span>
             <span>&middot;</span>
-            <span>Family</span>
+            <span>Família</span>
           </div>
         </div>
       </div>
     </div>
-    <button type="button" id="moveRight" class="btn-nav">
+    <button type="button" id="moverDireita" class="btn-nav">
       ᐅ
     </button>
-  </div >
+  </div>
 
-
-  <script src="principal.js"></script>
+  <script src="JS/principal.js"></script>
 
 </body>
-
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo da Forca</title>
+  <link rel="stylesheet" href="CSS/forca.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div id="container">
+    <div id="painel-direito">
+      <h1>Jogo da Forca</h1>
+      <div id="palavra"></div>
+      <p>Erros: <span id="contador-erros">0</span></p>
+      <p id="mensagem"></p>
+      <div id="teclado"></div>
+      <button id="reiniciar">Reiniciar</button>
+      <div id="ranking-container">
+        <div id="ranking-header">
+          <h2>🏆 Ranking</h2>
+          <div id="cronometro">00:00</div>
+        </div>
+        <ol id="ranking-list">
+          <li class="ouro">🥇 Jogador 1 - 00:45</li>
+          <li class="prata">🥈 Jogador 2 - 01:10</li>
+          <li class="bronze">🥉 Jogador 3 - 01:30</li>
+        </ol>
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="JS/forca.js"></script>
+</body>
+</html>
