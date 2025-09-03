@@ -1,34 +1,53 @@
 <!DOCTYPE html>
-<html lang="pt-br" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>2048</title>
+    <title> Jogo da Galinha</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" charset="utf-8"></script>
-    <link rel="icon" href="https://tse4.mm.bing.net/th/id/OIP.oUMbpi_eEudpZ4Qjn5NGmAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" />
+    <link rel="icon" href="4_Sem_Título_20250903110702-removebg-preview.png" />
+
   </head>
   <body>
-    <div class="ajuda">
-      <h3>Como jogar</h3>
-      <p>Use as teclas:</p>
-      <div class="teclado">
-        <span class="tecla">&lt;</span>
-        <span class="tecla">↑</span>
-        <span class="tecla">&gt;</span>
-        <span class="tecla">↓</span>
+    <div id="counter">0</div>
+
+    <div id="controlls">
+      <div>
+        <button id="forward">
+          <svg width="30" height="30" viewBox="0 0 10 10">
+            <g transform="rotate(0, 5,5)">
+              <path d="M5,4 L7,6 L3,6 L5,4" />
+            </g>
+          </svg>
+        </button>
+        <button id="left">
+          <svg width="30" height="30" viewBox="0 0 10 10">
+            <g transform="rotate(-90, 5,5)">
+              <path d="M5,4 L7,6 L3,6 L5,4" />
+            </g>
+          </svg>
+        </button>
+        <button id="backward">
+          <svg width="30" height="30" viewBox="0 0 10 10">
+            <g transform="rotate(180, 5,5)">
+              <path d="M5,4 L7,6 L3,6 L5,4" />
+            </g>
+          </svg>
+        </button>
+        <button id="right">
+          <svg width="30" height="30" viewBox="0 0 10 10">
+            <g transform="rotate(90, 5,5)">
+              <path d="M5,4 L7,6 L3,6 L5,4" />
+            </g>
+          </svg>
+        </button>
       </div>
     </div>
-    
-    <div class="container">
-      <div class="info">
-        <h1>2048</h1>
-        <div class="score-container">
-          <div class="score-title">Recorde</div>
-          <span id="pontuacao">0</span>
-        </div>
-      </div>
-      <span id="resultado">Junte os números e chegue ao bloco <b>2048</b></span>
-      <div class="grade"></div>
+
+    <div id="end">
+      <button id="retry">Jogar de novo</button>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/99/three.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
