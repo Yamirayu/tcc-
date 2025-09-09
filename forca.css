@@ -1,0 +1,175 @@
+/* Fonte retrô */
+body {
+    margin: 0;
+    font-family: 'VT323', monospace;
+    background-color: #111;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  /* Container principal */
+  #container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  /* Título centralizado no topo */
+  h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #00ffcc;
+  }
+  
+  /* Área da palavra no centro da tela */
+  #palavra {
+    font-size: 2.5em;
+    letter-spacing: 10px;
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  /* Mensagem de vitória/derrota */
+  #mensagem {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  /* Teclado centralizado abaixo da palavra */
+  #teclado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  
+  #teclado button {
+    font-size: 1.5em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #eee;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  /* Animações de clique */
+  #teclado button.correto {
+    background-color: #2ecc71;
+    animation: fadeToGray 1s forwards;
+  }
+  
+  #teclado button.errado {
+    background-color: #e74c3c;
+    animation: fadeToGray 1s forwards;
+  }
+  
+  @keyframes fadeToGray {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% {
+      background-color: #555;
+      color: #ccc;
+      transform: scale(1);
+    }
+  }
+  
+/* Botão de reinício no canto superior esquerdo */
+#reiniciar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 1.2em;
+    padding: 8px 12px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  /* Ranking no canto superior direito */
+  #ranking-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    z-index: 100;
+  }  
+  
+  #ranking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  #ranking-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  #cronometro {
+    font-size: 1em;
+    color: #00ffcc;
+  }
+  
+  #ranking-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #ranking-list li {
+    margin: 5px 0;
+    font-size: 1em;
+  }
+  
+  /* Input de nome */
+  #input-nome {
+    font-size: 1.2em;
+    padding: 5px;
+    margin-top: 10px;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  /* Botão salvar nome */
+  #mensagem button {
+    margin-top: 10px;
+    font-size: 1em;
+    padding: 5px 10px;
+    background-color: #00ffcc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+  }
+  
+  .x-tempo-pior {
+    display: inline-block;
+    margin-left: 5px;
+    animation: girarDesaparecer 2s forwards;
+  }
+  
+  @keyframes girarDesaparecer {
+    0% { transform: rotate(0deg); opacity: 1; }
+    50% { transform: rotate(180deg); opacity: 0.5; }
+    100% { transform: rotate(360deg); opacity: 0; }
+  }  
