@@ -1,0 +1,149 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #74ebd5, #ACB6E5);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.quiz-container {
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#pergunta {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #444;
+  animation: fadeInPergunta 0.4s ease;
+}
+
+@keyframes fadeInPergunta {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#mensagem {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#respostas button {
+  background-color: #ffffff;
+  border: 2px solid #4CAF50;
+  color: #333;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#respostas button:hover {
+  background-color: #e6ffe6;
+  border-color: #45a049;
+}
+
+.botao-correto {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.botao-incorreto {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.botao-correto,
+.botao-incorreto {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.botao-correto::after,
+.botao-incorreto::after {
+  content: attr(data-feedback);
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  animation: fadeInOut 2s forwards;
+}
+
+.botao-reiniciar {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.botao-reiniciar:hover {
+  background-color: #1976D2;
+}
+
+#botao-proxima {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#botao-proxima:hover {
+  background-color: #45a049;
+}
+
+#vidas {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 15px;
+}
+
+.feedback-icon {
+  font-size: 24px;
+  margin-left: 10px;
+  opacity: 0;
+  animation: fadeInOut 2s forwards;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: scale(0.8); }
+  20% { opacity: 1; transform: scale(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: scale(0.8); }
+}
