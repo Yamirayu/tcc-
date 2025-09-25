@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro/Login</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box login active">
+          <h2>Login</h2>
+          <input type="text" placeholder="Email ou Nome">
+          <input type="password" placeholder="Senha">
+          <button>Entrar</button>
+          <p>Não tem uma conta? <span class="toggle">Cadastrar-se</span></p>
+        </div>
+      
+        <div class="form-box cadastro">
+          <h2>Cadastro</h2>
+          <input type="text" placeholder="Nome">
+          <input type="email" placeholder="Email">
+          <input type="date" placeholder="Data de nascimento">
+          <input type="password" placeholder="Senha">
+          <button id="btnCadastrar" >Cadastrar</button>
+          <p>Já tem uma conta? <span class="toggle">Fazer login</span></p>
+        </div>
+      </div>
+
+      <div class="upload-wrapper" style="display: none;">
+        <input type="file" accept="image/*" id="fotoPerfil" hidden>
+      
+        <label for="fotoPerfil" class="upload-area">
+          <div class="circle">
+            <span>Escolher Foto</span>
+          </div>
+        </label>
+
+        <div class="tema-wrapper">
+          <h3>Escolha seu tema:</h3>
+          <div class="tema-opcoes">
+            <button class="tema-btn" data-tema="padrao">Padrão</button>
+            <button class="tema-btn" data-tema="claro">Claro</button>
+            <button class="tema-btn" data-tema="escuro">Escuro Sofisticado</button>
+          </div>
+        </div>
+      </div>
+        
+      <footer class="rodape" style="display: none;">
+        <a href="#" id="linkVoltarCadastro">← Voltar para Cadastro</a>
+      </footer>
+      
+      <script src="cadastro.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+/* Fundo geral */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Tema padrão */
+body.tema-padrao {
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: #000;
+  }
+  
+  /* Tema claro */
+  body.tema-claro {
+    background: #f5f5f5;
+    color: #333;
+  }
+  
+  body.tema-claro .container,
+  body.tema-claro .upload-wrapper,
+  body.tema-claro .tema-wrapper {
+    background: #fff;
+    color: #333;
+  }
+  
+  /* Tema escuro sofisticado */
+  body.tema-escuro {
+    background: #1f2029;
+    color: #ccc;
+  }
+  
+  body.tema-escuro .container,
+  body.tema-escuro .upload-wrapper,
+  body.tema-escuro .tema-wrapper {
+    background: #2c2f3a;
+    color: #ccc;
+  }  
+  
+  .container {
+    position: relative;
+    width: 400px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    padding: 30px;
+    transition: height 0.5s ease;
+  }
+  
+  
+  /* Formulário base */
+  .form-box {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 30px;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Formulário ativo */
+  .form-box.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  
+  /* Títulos */
+  h2 {
+    margin-bottom: 20px;
+    color: #4e54c8;
+    text-align: center;
+  }
+  
+  /* Inputs */
+  input {
+    width: 100%;
+    padding: 12px 0; /* só vertical, evita deslocamento lateral */
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #4e54c8;
+  }
+  
+  
+  /* Botões */
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #4e54c8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background: #3b3fc1;
+  }
+  
+  /* Texto de troca */
+  p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .toggle {
+    color: #4e54c8;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .upload-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+    gap: 20px;
+    z-index: 10;
+  }  
+  
+  .upload-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tema-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+    margin-top: 20px;
+    transition: background 0.3s ease;
+  }
+  
+  .tema-wrapper h3 {
+    margin-bottom: 15px;
+    color: #4e54c8;
+  }
+  
+  .tema-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .tema-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .tema-btn[data-tema="padrao"] {
+    background: #4e54c8;
+    color: white;
+  }
+  
+  .tema-btn[data-tema="claro"] {
+    background: #e0e0e0;
+    color: #333;
+  }
+  
+  .tema-btn[data-tema="escuro"] {
+    background: #2c2f3a;
+    color: #ccc;
+  }  
+  
+  .circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    border: 3px dashed #4e54c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #4e54c8;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  }
+  
+  .circle:hover {
+    transform: scale(1.05);
+  }
+  
+  .rodape {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .rodape a {
+    color: #4e54c8;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .rodape a:hover {
+    color: #3b3fc1;
+  }
+  
