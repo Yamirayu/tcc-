@@ -319,33 +319,47 @@ header nav a:hover {
 .barra-pesquisa input {
   padding: 8px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid var(--cinza-claro);
   font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--branco);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.barra-pesquisa input::placeholder {
+  color: var(--cinza-claro);
+}
+
+.barra-pesquisa input:focus {
+  border-color: var(--branco);
 }
 
 .lista-sugestoes {
   position: absolute;
   top: 38px;
-  background-color: white;
-  color: black;
+  background-color: var(--preto);
+  color: var(--branco);
   width: 100%;
   border-radius: 5px;
   max-height: 150px;
   overflow-y: auto;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.6);
   z-index: 1000;
   list-style: none;
   padding: 0;
   margin: 0;
+  border: 1px solid var(--cinza-claro);
 }
 
 .lista-sugestoes li {
   padding: 8px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .lista-sugestoes li:hover {
-  background-color: #eee;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .cartao-jogo.destaque {

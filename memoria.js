@@ -26,7 +26,7 @@ function iniciarJogo() {
   board.innerHTML = '';
   flippedCards = [];
   matchedPairs = 0;
-  lockBoard = true; // Impede cliques durante a pré-visualização
+  lockBoard = true;
   errors = 0;
   playerNick = null;
   nickInput.value = '';
@@ -40,14 +40,13 @@ function iniciarJogo() {
 
   emojis.forEach(emoji => {
     const card = document.createElement('div');
-    card.className = 'card flipped'; // Já virada
+    card.className = 'card flipped';
     card.dataset.emoji = emoji;
     card.textContent = emoji;
     board.appendChild(card);
     cards.push(card);
   });
 
-  // ⏳ Aguarda 3 segundos antes de esconder as cartas
   setTimeout(() => {
     cards.forEach(card => {
       card.classList.remove('flipped');
@@ -55,12 +54,11 @@ function iniciarJogo() {
       card.addEventListener('click', () => virarCarta(card));
     });
     lockBoard = false;
-    startTime = performance.now(); // Começa a contar tempo após esconder
+    startTime = performance.now();
   }, 3000);
 
   carregarRanking();
 }
-
 
 function virarCarta(card) {
   if (lockBoard || card.classList.contains('flipped')) return;
@@ -95,13 +93,17 @@ function virarCarta(card) {
 function salvarRanking() {
   const nick = nickInput.value.trim();
   if (!playerNick && nick) {
+    if (ranking.some(p => p.nick === nick)) {
+      alert("Esse nome já está no ranking. Escolha outro.");
+      return;
+    }
+
     playerNick = nick;
     const tempoMs = performance.now() - startTime;
     const tempoFormatado = formatarTempo(tempoMs);
 
     ranking.push({ nick: playerNick, tempoMs, tempoFormatado, erros: errors });
 
-    // 🧠 Salva no localStorage
     localStorage.setItem('rankingMemoria', JSON.stringify(ranking));
 
     nickInput.disabled = true;
@@ -131,21 +133,21 @@ function atualizarRanking() {
   const tbody = document.querySelector('#ranking-table tbody');
   tbody.innerHTML = '';
 
-  ordenado.forEach((p, i) => {
+  ordenado.forEach(p => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${p.nick}</td>
       <td>${p.tempoFormatado}</td>
       <td>${p.erros}</td>
-      <td><button class="remove-btn" onclick="removerJogador(${i})">❌</button></td>
+      <td><button class="remove-btn" onclick="removerJogadorPorNick('${p.nick}')">❌</button></td>
     `;
     tbody.appendChild(row);
   });
 }
 
-function removerJogador(index) {
-  ranking.splice(index, 1);
-  localStorage.setItem('rankingMemoria', JSON.stringify(ranking)); // Atualiza ranking salvo
+function removerJogadorPorNick(nick) {
+  ranking = ranking.filter(p => p.nick !== nick);
+  localStorage.setItem('rankingMemoria', JSON.stringify(ranking));
   atualizarRanking();
 }
 
