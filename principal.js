@@ -1,7 +1,5 @@
 // Elementos principais
 const slider = document.querySelector(".carrossel");
-const btnLeft = document.getElementById("moverEsquerda");
-const btnRight = document.getElementById("moverDireita");
 const template = document.getElementById("jogo0");
 
 // Configurações
@@ -10,15 +8,14 @@ let itemsPerPage = window.innerWidth < 900 ? 4 : 6;
 
 // Dados dos jogos
 const movies = [
-  { nome: "Jogo da Memória", src: "memoria.png", link: "memoria.html" },
-  { nome: "Jogo da Velha", src: "velha.png", link: "velha.html" },
-  { nome: "Jogo da Galinha", src: "galinha.png", link: "jogodagalinha.html" },
-  { nome: "Ping-Pong", src: "pingpong.png", link: "pingpong.html" },
-  { nome: "Jogo Estratégico", src: "destaque1.png", link: "estrategia.html" },
-  { nome: "Jogo de Reflexo", src: "destaque2.png", link: "reflexo.html" }
+  { nome: "Jogo da Memória", src: "memoriacapa.png", link: "memoria.html" },
+  { nome: "Jogo da Velha", src: "velhacapa.png", link: "velha.html" },
+  { nome: "Jogo da Galinha", src: "galinhacapa.png", link: "jogodagalinha.html" },
+  { nome: "Ping-Pong", src: "pingpongcapa.jpeg", link: "pingpong.html" },
+  { nome: "Julinator", src: "julinatorcapa.jpg", link: "estrategia.html" },
+  { nome: "Lipenator", src: "lipenatorcapa.jpg", link: "reflexo.html" }
 ];
 
-// Dados extras (mock)
 const descriptions = Array(movies.length).fill("Empolgante · Estratégico · Educativo");
 const ratings = Array(movies.length).fill("Livre");
 const matches = Array(movies.length).fill(95);
@@ -38,28 +35,26 @@ const observer = new IntersectionObserver((entries) => {
   });
 });
 
-// Função para preencher o carrossel
+// Preenche o carrossel
 function populateSlider() {
   movies.forEach((movie, index) => {
     const clone = template.cloneNode(true);
-    clone.id = "";
+    clone.id = `jogo${index}`;
+    clone.setAttribute("data-nome", movie.nome.toLowerCase());
 
-    // Link clicável
     const link = document.createElement("a");
     link.href = movie.link || "#";
     link.target = "_blank";
 
-    // Imagem com lazy loading
     const img = clone.querySelector("img");
     img.loading = "lazy";
     img.setAttribute("data-src", movie.src);
-    img.src = ""; // placeholder leve
+    img.src = "";
     img.alt = `Jogo ${index + 1}`;
     img.parentNode.replaceChild(link, img);
     link.appendChild(img);
-    observer.observe(img); // ativa o lazy loading
+    observer.observe(img);
 
-    // Texto descritivo
     const textContainer = clone.querySelector(".texto-descricao");
     textContainer.innerHTML = `
       <strong>${movie.nome}</strong><br>
@@ -73,7 +68,7 @@ function populateSlider() {
     slider.appendChild(clone);
   });
 
-  template.remove(); // Remove o modelo original
+  template.style.display = "none";
 }
 
 // Navegação
@@ -95,68 +90,7 @@ function scrollCarrossel(direction) {
   }
 }
 
-// Eventos
-btnRight.addEventListener("click", () => scrollCarrossel("right"));
-btnLeft.addEventListener("click", () => scrollCarrossel("left"));
-
-// Inicialização
-populateSlider();
-
-// 🔄 Atualiza indicadores visuais
-function updateIndicators(index) {
-  indicators.forEach((el, i) => {
-    el.classList.toggle("active", i === index);
-  });
-}
-
-// ⬅️ Botão Esquerda
-btnLeft.addEventListener("click", () => {
-  const movieWidth = document.querySelector(".movie").offsetWidth;
-  const scrollAmount = movieWidth * 6;
-
-  slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-
-  activeIndex = (activeIndex - 1 + indicators.length) % indicators.length;
-  updateIndicators(activeIndex);
-});
-
-// ➡️ Botão Direita
-btnRight.addEventListener("click", () => {
-  const movieWidth = document.querySelector(".movie").offsetWidth;
-  const scrollAmount = movieWidth * 6;
-
-  if (activeIndex === indicators.length - 1) {
-    populateSlider(); // looping
-    activeIndex = 0;
-  } else {
-    activeIndex++;
-  }
-
-  slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  updateIndicators(activeIndex);
-});
-
-// Scroll Right button
-btnRight.addEventListener("click", (e) => {
-  let movieWidth = document.querySelector(".movie").getBoundingClientRect().width;
-  let scrollDistance = movieWidth * 6;
-
-  console.log(`movieWidth = ${movieWidth}`);
-  console.log(`scrolling right ${scrollDistance}`);
-
-  if (activeIndex == 2) {
-    populateSlider();
-    slider.scrollBy({ top: 0, left: +scrollDistance, behavior: "smooth" });
-    activeIndex = 0;
-    updateIndicators(activeIndex);
-  } else {
-    slider.scrollBy({ top: 0, left: +scrollDistance, behavior: "smooth" });
-    activeIndex = (activeIndex + 1) % 3;
-    console.log(activeIndex);
-    updateIndicators(activeIndex);
-  }
-});
-
+// Busca de jogos
 function sugerirJogos() {
   const termo = document.getElementById("busca").value.toLowerCase();
   const lista = document.getElementById("sugestoes");
@@ -168,35 +102,34 @@ function sugerirJogos() {
 
   if (encontrados.length > 0) {
     lista.classList.add("aberta");
-    encontrados.forEach((movie, index) => {
+    encontrados.forEach((movie) => {
       const item = document.createElement("li");
-
       const termoRegex = new RegExp(`(${termo})`, "gi");
       const nomeDestacado = movie.nome.replace(termoRegex, "<strong>$1</strong>");
-
       item.innerHTML = `<span>${nomeDestacado}</span>`;
-      item.onclick = () => rolarParaJogo(index);
+      item.onclick = () => rolarParaJogo(movie.nome);
       lista.appendChild(item);
     });
+  } else if (termo !== "") {
+    lista.classList.add("aberta");
+    const item = document.createElement("li");
+    item.innerHTML = `<em>Nenhum jogo com esse nome foi identificado ;(</em>`;
+    item.style.color = "var(--cinza-claro)";
+    item.style.textAlign = "center";
+    lista.appendChild(item);
   } else {
-    if (termo !== "") {
-      lista.classList.add("aberta");
-      const item = document.createElement("li");
-      item.innerHTML = `<em>Nenhum jogo com esse nome foi identificado ;(</em>`;
-      item.style.color = "var(--cinza-claro)";
-      item.style.textAlign = "center";
-      lista.appendChild(item);
-    } else {
-      lista.classList.remove("aberta");
-    }
+    lista.classList.remove("aberta");
   }
 }
 
-function rolarParaJogo(index) {
-  const jogos = document.querySelectorAll(".cartao-jogo");
-  jogos.forEach(j => j.classList.remove("destaque"));
+// Rolar e destacar jogo por nome
+function rolarParaJogo(nomeBuscado) {
+  document.querySelectorAll(".cartao-jogo").forEach(j => j.classList.remove("destaque"));
 
-  const alvo = jogos[index];
+  const alvo = Array.from(document.querySelectorAll(".cartao-jogo")).find(j =>
+    j.getAttribute("data-nome") === nomeBuscado.toLowerCase()
+  );
+
   if (alvo) {
     alvo.scrollIntoView({ behavior: "smooth", block: "center" });
     alvo.classList.add("destaque");
@@ -205,6 +138,7 @@ function rolarParaJogo(index) {
   }
 }
 
+// Footer dinâmico
 const devs = [
   { nome: "Wellyngton (Gigante)", insta: "wellygigante" },
   { nome: "Kaique Cordeiro", insta: "kaique.cordeiro" },
@@ -223,18 +157,48 @@ function atualizarFooter() {
   container.classList.add("fade-out");
 
   setTimeout(() => {
-    // Atualiza índice ANTES de aplicar
     devIndex = (devIndex + 1) % devs.length;
     const dev = devs[devIndex];
-
     nomeEl.textContent = dev.nome;
     instaEl.textContent = `@${dev.insta}`;
     instaEl.href = `https://instagram.com/${dev.insta}`;
-
     container.classList.remove("fade-out");
     container.classList.add("fade-in");
   }, 600);
 }
 
+// Inicialização
+populateSlider();
 setInterval(atualizarFooter, 5000);
 
+function mostrarExplicacao(tipo) {
+  const area = document.getElementById("area-explicativa");
+  area.classList.remove("fade-in");
+  area.classList.add("fade-out");
+
+  setTimeout(() => {
+    if (tipo === "categorias") {
+      area.innerHTML = `
+        <h3>🎮 Categorias de Jogos</h3>
+        <p>Os jogos são divididos em categorias que estimulam diferentes habilidades:</p>
+        <ul>
+          <li><strong>Lógica:</strong> Desafios que envolvem raciocínio e algoritmos</li>
+          <li><strong>Reflexo:</strong> Teste sua velocidade de reação</li>
+          <li><strong>Memória:</strong> Exercite sua capacidade de retenção</li>
+          <li><strong>Estratégia:</strong> Planeje e vença com inteligência</li>
+        </ul>
+        <img src="categorias.png" alt="Categorias de jogos">
+      `;
+    } else if (tipo === "informacoes") {
+      area.innerHTML = `
+        <h3>ℹ️ Sobre o Projeto</h3>
+        <p>Este site foi criado para transformar o ensino de lógica de programação em uma experiência divertida e envolvente. Cada jogo foi pensado para estimular habilidades específicas como raciocínio, memória, reflexo e estratégia.</p>
+        <p>Ideal para estudantes, professores e curiosos que querem aprender brincando!</p>
+        <img src="sobre.png" alt="Sobre o projeto">
+      `;
+    }
+
+    area.classList.remove("fade-out");
+    area.classList.add("fade-in");
+  }, 300);
+}

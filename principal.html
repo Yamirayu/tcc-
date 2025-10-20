@@ -34,18 +34,10 @@
         <p class="descricao-site">Transforme o aprendizado em aventura!</p>
         <p class="descricao-site">Cansado da forma tradicional e monótona de estudar? Acreditamos que o aprendizado pode e deve ser uma jornada emocionante e cheia de descobertas.</p>
 
-        <div class="botoes">
-          <a href="https://seusite.com/categorias" target="_blank">
-            <button role="button" class="botao">
-              <i class="fas fa-play"></i>
-              Categorias de jogos
-            </button>
-          </a>
-          <a href="https://seusite.com/sobre" target="_blank">
-            <button role="button" class="botao">
-              <i class="fas fa-info-circle"></i>
-              Mais informações
-            </button>
+        <button class="botao-explicativo" onclick="mostrarExplicacao('categorias')">Catégorias</button>
+        <button class="botao-explicativo" onclick="mostrarExplicacao('informacoes')">Sobre</button>        
+
+            <div id="area-explicativa" class="area-explicativa"></div>
           </a>
         </div>
       </div>
@@ -53,7 +45,6 @@
   </main>
 
   <div class="container">
-    <button type="button" id="moverEsquerda" class="btn-nav">ᐊ</button>
 
     <div class="indicadores-container">
       <div class="indicador ativo" data-index="0"></div>
@@ -84,8 +75,6 @@
         </div>
       </div>
     </div>
-
-    <button type="button" id="moverDireita" class="btn-nav">ᐅ</button>
   </div>
 
   <footer>

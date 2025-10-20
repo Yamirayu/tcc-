@@ -1,4 +1,4 @@
-const emojiBase = ['🍎','🐶','🚗','🌟','🎮','🌈','🐱','⚡','🔥','🍕','👾','💎'];
+const emojiBase = ['💻','📱','🚗','🛜','🎮','🔦','💿','💾','🖨️','⌨️','👾','🖱️'];
 const totalPairs = emojiBase.length;
 let flippedCards = [], lockBoard = false, matchedPairs = 0;
 let startTime, errors = 0, playerNick = null;

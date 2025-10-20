@@ -104,27 +104,6 @@ header nav a:hover {
   text-decoration: none;
 }
 
-.botao {
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 1px solid var(--branco);
-  color: var(--branco);
-  padding: 15px 30px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-  margin-right: 15px;
-}
-
-.botao:hover {
-  background-color: var(--branco);
-  color: var(--preto);
-  transform: scale(1.05);
-}
-
-.botao i {
-  margin-right: 10px;
-}
-
 /* Container geral */
 .container {
   position: relative;
@@ -139,7 +118,7 @@ header nav a:hover {
   padding: var(--slider-py) 0;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-}
+  }
 
 /* Indicadores */
 .indicadores-container {
@@ -268,44 +247,9 @@ header nav a:hover {
   margin-right: 0;
 }
 
-/* Botões de navegação */
-.btn-nav {
-  width: var(--arrow-width);
-  height: var(--movie-height);
-  border-radius: 5px;
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
-  outline: none;
-  border: none;
-  color: white;
-  top: var(--slider-py);
-  z-index: 5;
-  visibility: hidden;
-}
-
-#moverEsquerda {
-  left: 0;
-}
-
-#moverDireita {
-  right: 0;
-}
-
 @media only screen and (max-width: 900px) {
   .btn-nav {
     display: none;
-  }
-}
-
-@media only screen and (min-width: 901px) {
-  .container:hover .btn-nav,
-  .container:hover .indicadores-container {
-    visibility: visible;
-  }
-
-  .btn-nav {
-    visibility: visible;
   }
 }
 
@@ -424,4 +368,45 @@ footer {
 
 #dev-instagram:hover {
   color: var(--branco);
+}
+
+.area-explicativa {
+  margin: 30px auto 0 auto;
+  padding: 20px;
+  max-width: 1000px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.area-explicativa.fade-out {
+  opacity: 0;
+}
+.area-explicativa.fade-in {
+  opacity: 1;
+}
+.area-explicativa img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.botao-explicativo {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--branco);
+  color: var(--branco);
+  padding: 15px 30px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  margin-right: 15px;
+}
+
+.botao-explicativo:hover {
+  background-color: var(--branco);
+  color: var(--preto);
+  transform: scale(1.05);
+}
+
+.botao-explicativo i {
+  margin-right: 10px;
 }
