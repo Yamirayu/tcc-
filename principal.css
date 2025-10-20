@@ -313,49 +313,57 @@ header nav a:hover {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 200px; /* reduzido de 250px */
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 5px;
+  border: 1px solid var(--cinza-claro);
+  transition: width 0.3s ease;
 }
 
 .barra-pesquisa input {
-  padding: 8px;
+  padding: 10px 12px;
   border-radius: 5px;
-  border: 1px solid var(--cinza-claro);
+  border: none;
   font-size: 14px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: transparent;
   color: var(--branco);
   outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.barra-pesquisa input::placeholder {
-  color: var(--cinza-claro);
 }
 
 .barra-pesquisa input:focus {
-  border-color: var(--branco);
+  width: 220px;
 }
 
 .lista-sugestoes {
   position: absolute;
-  top: 38px;
+  top: 100%;
+  left: 0;
   background-color: var(--preto);
   color: var(--branco);
   width: 100%;
   border-radius: 5px;
-  max-height: 150px;
-  overflow-y: auto;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  max-height: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
   z-index: 1000;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 5px 0 0 0;
   border: 1px solid var(--cinza-claro);
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.lista-sugestoes.aberta {
+  max-height: 200px;
+  padding: 5px 0;
 }
 
 .lista-sugestoes li {
-  padding: 8px;
+  padding: 10px 15px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
 }
 
 .lista-sugestoes li:hover {
@@ -371,4 +379,49 @@ header nav a:hover {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
+}
+
+footer {
+  background-color: var(--cinza-escuro);
+  color: var(--cinza-claro);
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Trebuchet MS', sans-serif;
+  border-top: 2px solid var(--vermelho);
+}
+
+.container-footer {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.dev-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+  padding-left: 0px;
+  max-width: 100%;
+  text-align: left;
+}
+
+.dev-info.fade-out {
+  opacity: 0;
+}
+.dev-info.fade-in {
+  opacity: 1;
+}
+
+#dev-instagram {
+  color: var(--vermelho);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+#dev-instagram:hover {
+  color: var(--branco);
 }

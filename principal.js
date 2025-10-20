@@ -10,12 +10,12 @@ let itemsPerPage = window.innerWidth < 900 ? 4 : 6;
 
 // Dados dos jogos
 const movies = [
-  { nome: "Jogo da Memória", src: "memoriacapa.png", link: "memoria.html" },
-  { nome: "Jogo da Velha", src: "velha.jpg", link: "velha.html" },
-  { nome: "Jogo da Galinha", src: "galinha.jpg", link: "jogodagalinha.html" },
-  { nome: "Ping-Pong", src: "pingpong.jpg", link: "pingpong.html" },
-  { nome: "Julinator", src: "julinatorcapa.jpg", link: "Akinator.html" },
-  { nome: "Lipenator", src: "lipenatorcapa.jpg", link: "Akinator2.html" },
+  { nome: "Jogo da Memória", src: "memoria.png", link: "memoria.html" },
+  { nome: "Jogo da Velha", src: "velha.png", link: "velha.html" },
+  { nome: "Jogo da Galinha", src: "galinha.png", link: "jogodagalinha.html" },
+  { nome: "Ping-Pong", src: "pingpong.png", link: "pingpong.html" },
+  { nome: "Jogo Estratégico", src: "destaque1.png", link: "estrategia.html" },
+  { nome: "Jogo de Reflexo", src: "destaque2.png", link: "reflexo.html" }
 ];
 
 // Dados extras (mock)
@@ -157,20 +157,39 @@ btnRight.addEventListener("click", (e) => {
   }
 });
 
-// Busca e sugestão
 function sugerirJogos() {
   const termo = document.getElementById("busca").value.toLowerCase();
   const lista = document.getElementById("sugestoes");
   lista.innerHTML = "";
 
-  movies.forEach((movie, index) => {
-    if (movie.nome.toLowerCase().includes(termo) && termo !== "") {
+  const encontrados = movies.filter(movie =>
+    movie.nome.toLowerCase().includes(termo) && termo !== ""
+  );
+
+  if (encontrados.length > 0) {
+    lista.classList.add("aberta");
+    encontrados.forEach((movie, index) => {
       const item = document.createElement("li");
-      item.textContent = movie.nome;
+
+      const termoRegex = new RegExp(`(${termo})`, "gi");
+      const nomeDestacado = movie.nome.replace(termoRegex, "<strong>$1</strong>");
+
+      item.innerHTML = `<span>${nomeDestacado}</span>`;
       item.onclick = () => rolarParaJogo(index);
       lista.appendChild(item);
+    });
+  } else {
+    if (termo !== "") {
+      lista.classList.add("aberta");
+      const item = document.createElement("li");
+      item.innerHTML = `<em>Nenhum jogo com esse nome foi identificado ;(</em>`;
+      item.style.color = "var(--cinza-claro)";
+      item.style.textAlign = "center";
+      lista.appendChild(item);
+    } else {
+      lista.classList.remove("aberta");
     }
-  });
+  }
 }
 
 function rolarParaJogo(index) {
@@ -185,3 +204,37 @@ function rolarParaJogo(index) {
     document.getElementById("busca").value = "";
   }
 }
+
+const devs = [
+  { nome: "Wellyngton (Gigante)", insta: "wellygigante" },
+  { nome: "Kaique Cordeiro", insta: "kaique.cordeiro" },
+  { nome: "Yara De Morais", insta: "yaramorais.dev" },
+  { nome: "Erik Vensceslau (Capivara)", insta: "capivara.erik" },
+  { nome: "Gustavo (Musquitão)", insta: "gustavomusquitao" }
+];
+
+let devIndex = 0;
+const nomeEl = document.getElementById("dev-nome");
+const instaEl = document.getElementById("dev-instagram");
+const container = document.getElementById("dev-info");
+
+function atualizarFooter() {
+  container.classList.remove("fade-in");
+  container.classList.add("fade-out");
+
+  setTimeout(() => {
+    // Atualiza índice ANTES de aplicar
+    devIndex = (devIndex + 1) % devs.length;
+    const dev = devs[devIndex];
+
+    nomeEl.textContent = dev.nome;
+    instaEl.textContent = `@${dev.insta}`;
+    instaEl.href = `https://instagram.com/${dev.insta}`;
+
+    container.classList.remove("fade-out");
+    container.classList.add("fade-in");
+  }, 600);
+}
+
+setInterval(atualizarFooter, 5000);
+
