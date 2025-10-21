@@ -37,6 +37,8 @@ const observer = new IntersectionObserver((entries) => {
 
 // Preenche o carrossel
 function populateSlider() {
+  if (slider.children.length > 1) return;
+
   movies.forEach((movie, index) => {
     const clone = template.cloneNode(true);
     clone.id = `jogo${index}`;
@@ -91,36 +93,50 @@ function scrollCarrossel(direction) {
 }
 
 // Busca de jogos
-function sugerirJogos() {
-  const termo = document.getElementById("busca").value.toLowerCase();
-  const lista = document.getElementById("sugestoes");
-  lista.innerHTML = "";
+const inputBusca = document.getElementById("busca");
+const listaSugestoes = document.getElementById("sugestoes");
+
+function atualizarSugestoes() {
+  const termo = inputBusca.value.trim().toLowerCase();
+  listaSugestoes.innerHTML = "";
+
+  if (termo === "") {
+    listaSugestoes.classList.remove("aberta");
+    return;
+  }
 
   const encontrados = movies.filter(movie =>
-    movie.nome.toLowerCase().includes(termo) && termo !== ""
+    movie.nome.toLowerCase().includes(termo)
   );
 
   if (encontrados.length > 0) {
-    lista.classList.add("aberta");
     encontrados.forEach((movie) => {
       const item = document.createElement("li");
       const termoRegex = new RegExp(`(${termo})`, "gi");
       const nomeDestacado = movie.nome.replace(termoRegex, "<strong>$1</strong>");
       item.innerHTML = `<span>${nomeDestacado}</span>`;
       item.onclick = () => rolarParaJogo(movie.nome);
-      lista.appendChild(item);
+      listaSugestoes.appendChild(item);
     });
-  } else if (termo !== "") {
-    lista.classList.add("aberta");
+  } else {
     const item = document.createElement("li");
     item.innerHTML = `<em>Nenhum jogo com esse nome foi identificado ;(</em>`;
     item.style.color = "var(--cinza-claro)";
     item.style.textAlign = "center";
-    lista.appendChild(item);
-  } else {
-    lista.classList.remove("aberta");
+    listaSugestoes.appendChild(item);
   }
+
+  listaSugestoes.classList.add("aberta");
 }
+
+inputBusca.addEventListener("input", atualizarSugestoes);
+
+// Fecha a lista ao clicar fora
+document.addEventListener("mousedown", (e) => {
+  if (!listaSugestoes.contains(e.target) && e.target !== inputBusca) {
+    listaSugestoes.classList.remove("aberta");
+  }
+});
 
 // Rolar e destacar jogo por nome
 function rolarParaJogo(nomeBuscado) {
@@ -138,18 +154,17 @@ function rolarParaJogo(nomeBuscado) {
   }
 }
 
-// Footer dinâmico
 const devs = [
-  { nome: "Wellyngton (Gigante)", insta: "wellygigante" },
-  { nome: "Kaique Cordeiro", insta: "kaique.cordeiro" },
-  { nome: "Yara De Morais", insta: "yaramorais.dev" },
-  { nome: "Erik Vensceslau (Capivara)", insta: "capivara.erik" },
-  { nome: "Gustavo (Musquitão)", insta: "gustavomusquitao" }
+  { nome: "Wellyngton (Gigante)", github: "WellyngtonGigante" },
+  { nome: "Kaique Cordeiro", github: "KaiqueCordeiro2008" },
+  { nome: "Yara de Morais", github: "Yamirayu" },
+  { nome: "Erik Ferreira", github: "Erik-vds" },
+  { nome: "Gustavo (Musquitão)", github: "gustavomusquitão" }
 ];
 
 let devIndex = 0;
 const nomeEl = document.getElementById("dev-nome");
-const instaEl = document.getElementById("dev-instagram");
+const githubEl = document.getElementById("dev-github");
 const container = document.getElementById("dev-info");
 
 function atualizarFooter() {
@@ -160,22 +175,24 @@ function atualizarFooter() {
     devIndex = (devIndex + 1) % devs.length;
     const dev = devs[devIndex];
     nomeEl.textContent = dev.nome;
-    instaEl.textContent = `@${dev.insta}`;
-    instaEl.href = `https://instagram.com/${dev.insta}`;
+    githubEl.textContent = `github.com/${dev.github}`;
+    githubEl.href = `https://github.com/${dev.github}`;
     container.classList.remove("fade-out");
     container.classList.add("fade-in");
   }, 600);
 }
 
+setInterval(atualizarFooter, 5000);
+
 // Inicialização
 populateSlider();
 setInterval(atualizarFooter, 5000);
 
+// Área explicativa
 function mostrarExplicacao(tipo) {
   const area = document.getElementById("area-explicativa");
   const botoes = document.querySelectorAll(".botao-explicativo");
 
-  // Alterna botão ativo
   botoes.forEach(btn => {
     const tipoBotao = btn.textContent.toLowerCase().includes("categorias") ? "categorias" : "informacoes";
     if (tipoBotao === tipo) {
@@ -187,7 +204,6 @@ function mostrarExplicacao(tipo) {
 
   const botaoAtivo = document.querySelector(".botao-explicativo.ativo");
 
-  // Se nenhum botão está ativo, esconde a área
   if (!botaoAtivo) {
     area.classList.remove("visivel");
     setTimeout(() => {
@@ -196,7 +212,6 @@ function mostrarExplicacao(tipo) {
     return;
   }
 
-  // Troca conteúdo com animação
   area.classList.remove("visivel");
   setTimeout(() => {
     if (tipo === "categorias") {
@@ -219,7 +234,35 @@ function mostrarExplicacao(tipo) {
         <img src="sobre.png" alt="Sobre o projeto">
       `;
     }
-
     area.classList.add("visivel");
   }, 300);
 }
+
+// Menu "Explorar" com animação e clique fora
+function mostrarExplorar() {
+  const menu = document.getElementById("menu-explorar");
+  menu.classList.toggle("show");
+
+  function fechar(event) {
+    if (!menu.contains(event.target) && event.target.textContent !== "Explorar") {
+      menu.classList.remove("show");
+      document.removeEventListener("click", fechar);
+    }
+  }
+
+  const input = document.getElementById("busca");
+  const lista = document.getElementById("sugestoes");
+  
+  document.addEventListener("mousedown", function(e) {
+    if (!lista.contains(e.target) && !input.contains(e.target)) {
+      lista.classList.remove("aberta");
+    }
+  });
+  
+}
+
+// Rolagem suave até a seção "Equipe"
+document.querySelector('a[href="#footer-dev"]').addEventListener("click", function(e) {
+  e.preventDefault();
+  document.getElementById("footer-dev").scrollIntoView({ behavior: "smooth", block: "center" });
+});

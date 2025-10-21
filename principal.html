@@ -15,17 +15,16 @@
     <div class="container">
       <h2 class="logo">R.A.P</h2>
       <nav>
-        <a href="#">Início</a>
-        <a href="#">Sobre</a>
-        <a href="#">Contato</a>
-        <a href="#">Ajuda</a>
+        <a href="desenvolvimento.html">Desenvolvimento</a>
+        <a href="#footer-dev">Equipe</a>
+        <a href="#" onclick="mostrarExplorar()">Explorar</a>
       </nav>
       <div class="barra-pesquisa">
         <input type="text" id="busca" placeholder="Buscar jogo..." oninput="sugerirJogos()" />
         <ul id="sugestoes" class="lista-sugestoes"></ul>
       </div>
     </div>
-  </header>  
+  </header>
 
   <main>
     <div class="jogo-destaque">
@@ -38,17 +37,23 @@
             <i class="fas fa-play"></i>
             Categorias de jogos
           </button>
-        
           <button class="botao-explicativo" onclick="mostrarExplicacao('informacoes')">
             <i class="fas fa-info-circle"></i>
             Mais informações
           </button>
         </div>
-        
         <div id="area-explicativa" class="area-explicativa"></div>
       </div>
     </div>
   </main>
+
+  <div id="menu-explorar" class="menu-explorar">
+    <ul>
+      <li>Jogo 1: Em breve</li>
+      <li>Jogo 2: Em breve</li>
+      <li>Jogo 3: Em breve</li>
+    </ul>
+  </div>
 
   <div class="container">
     <div class="indicadores-container">
@@ -81,10 +86,9 @@
     </div>
   </div>
 
-  <footer class="footer-dev">
+  <footer class="footer-dev" id="footer-dev">
     <h2 class="titulo-dev">DESENVOLVEDORES</h2>
     <div class="cards-dev">
-
       <!-- Wellyngton (Gigante) -->
       <div class="card-dev">
         <div class="card-dev-inner">
@@ -175,7 +179,7 @@
             <a href="https://instagram.com/yamirayu" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-instagram"></i> Instagram
             </a>
-            <a href="ttps://wa.me/5511987490564" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/5511987490564" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer">
@@ -204,8 +208,14 @@
           </div>
         </div>
       </div>
-    </footer>
+    </div>
 
-<script src="principal.js"></script>
+    <div class="dev-info" id="dev-info">
+      <i class="fab fa-github"></i>
+      <span id="dev-nome">Wellyngton (Gigante)</span> —
+      <a id="dev-github" href="https://github.com/gigante753" target="_blank">github.com/gigante753</a>
+    </div>    
+
+  <script src="principal.js"></script>
 </body>
 </html>
