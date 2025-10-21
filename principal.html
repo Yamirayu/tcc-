@@ -7,7 +7,7 @@
   <title>R.A.P</title>
   <link rel="stylesheet" href="principal.css">
   <link rel="icon" type="image/png" sizes="64x64" href="fav-principal.png">
-  <script src="https://kit.fontawesome.com/a0043d9bc2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -33,19 +33,24 @@
         <h2 class="titulo">Ensino de Lógica de Programação Gamificada</h2>
         <p class="descricao-site">Transforme o aprendizado em aventura!</p>
         <p class="descricao-site">Cansado da forma tradicional e monótona de estudar? Acreditamos que o aprendizado pode e deve ser uma jornada emocionante e cheia de descobertas.</p>
-
-        <button class="botao-explicativo" onclick="mostrarExplicacao('categorias')">Catégorias</button>
-        <button class="botao-explicativo" onclick="mostrarExplicacao('informacoes')">Sobre</button>        
-
-            <div id="area-explicativa" class="area-explicativa"></div>
-          </a>
+        <div class="container-explicativo">
+          <button class="botao-explicativo" onclick="mostrarExplicacao('categorias')">
+            <i class="fas fa-play"></i>
+            Categorias de jogos
+          </button>
+        
+          <button class="botao-explicativo" onclick="mostrarExplicacao('informacoes')">
+            <i class="fas fa-info-circle"></i>
+            Mais informações
+          </button>
         </div>
+        
+        <div id="area-explicativa" class="area-explicativa"></div>
       </div>
     </div>
   </main>
 
   <div class="container">
-
     <div class="indicadores-container">
       <div class="indicador ativo" data-index="0"></div>
       <div class="indicador" data-index="1"></div>
@@ -53,7 +58,6 @@
     </div>
 
     <div class="carrossel" id="meuCarrossel">
-      <!-- Template do card para clonagem -->
       <div class="cartao-jogo" id="jogo0">
         <img src="https://via.placeholder.com/300x200" alt="Imagem do jogo">
         <div class="descricao">
@@ -77,16 +81,131 @@
     </div>
   </div>
 
-  <footer>
-    <div class="container-footer">
-      <div id="dev-info" class="dev-info">
-        <span id="dev-nome">Wellyngton (Gigante)</span>
-        <span>&nbsp;—&nbsp;</span>
-        <a id="dev-instagram" href="https://instagram.com/wellygigante" target="_blank">@wellygigante</a>
-      </div>
-    </div>
-  </footer>  
+  <footer class="footer-dev">
+    <h2 class="titulo-dev">DESENVOLVEDORES</h2>
+    <div class="cards-dev">
 
-  <script src="principal.js"></script>
+      <!-- Wellyngton (Gigante) -->
+      <div class="card-dev">
+        <div class="card-dev-inner">
+          <div class="card-dev-front">
+            <span>Wellyngton (Gigante)</span>
+          </div>
+          <div class="card-dev-back">
+            <a href="https://instagram.com/gigante_753" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> @gigante_753
+            </a>
+            <a href="https://wa.me/5511959287704" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Contato
+            </a>
+            <a href="https://tiktok.com/@gigante_753" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marcos Vinicius -->
+      <div class="card-dev">
+        <div class="card-dev-inner">
+          <div class="card-dev-front">
+            <span>Marcos Vinicius</span>
+          </div>
+          <div class="card-dev-back">
+            <a href="https://instagram.com/01marcos" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> @01marcos
+            </a>
+            <a href="https://wa.me/5511993941350" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Contato
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kaique Cordeiro -->
+      <div class="card-dev">
+        <div class="card-dev-inner">
+          <div class="card-dev-front">
+            <span>Kaique Cordeiro</span>
+          </div>
+          <div class="card-dev-back">
+            <a href="https://instagram.com/kaiquec0rdeiro" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> @kaiquec0rdeiro
+            </a>
+            <a href="https://wa.me/5511984020571" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Contato
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Erik Ferreira -->
+      <div class="card-dev">
+        <div class="card-dev-inner">
+          <div class="card-dev-front">
+            <span>Erik Ferreira</span>
+          </div>
+          <div class="card-dev-back">
+            <a href="https://instagram.com/erikvds_zn" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> @erikvds_zn
+            </a>
+            <a href="https://wa.me/5511959285856" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Contato
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yara de Morais -->
+      <div class="card-dev">
+        <div class="card-dev-inner">
+          <div class="card-dev-front">
+            <span>Yara de Morais</span>
+          </div>
+          <div class="card-dev-back">
+            <a href="https://instagram.com/yamirayu" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="ttps://wa.me/5511987490564" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gustavo (Musquitão) -->
+      <div class="card-dev">
+        <div class="card-dev-inner">
+          <div class="card-dev-front">
+            <span>Gustavo (Musquitão)</span>
+          </div>
+          <div class="card-dev-back">
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-tiktok"></i> TikTok
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+<script src="principal.js"></script>
 </body>
 </html>

@@ -9,9 +9,9 @@ let itemsPerPage = window.innerWidth < 900 ? 4 : 6;
 // Dados dos jogos
 const movies = [
   { nome: "Jogo da Memória", src: "memoriacapa.png", link: "memoria.html" },
-  { nome: "Jogo da Velha", src: "velhacapa.png", link: "velha.html" },
+  { nome: "Jogo da Velha", src: "jogodavelhacapa.png", link: "velha.html" },
   { nome: "Jogo da Galinha", src: "galinhacapa.png", link: "jogodagalinha.html" },
-  { nome: "Ping-Pong", src: "pingpongcapa.jpeg", link: "pingpong.html" },
+  { nome: "Ping-Pong", src: "pongcapa.png", link: "pingpong.html" },
   { nome: "Julinator", src: "julinatorcapa.jpg", link: "estrategia.html" },
   { nome: "Lipenator", src: "lipenatorcapa.jpg", link: "reflexo.html" }
 ];
@@ -173,9 +173,31 @@ setInterval(atualizarFooter, 5000);
 
 function mostrarExplicacao(tipo) {
   const area = document.getElementById("area-explicativa");
-  area.classList.remove("fade-in");
-  area.classList.add("fade-out");
+  const botoes = document.querySelectorAll(".botao-explicativo");
 
+  // Alterna botão ativo
+  botoes.forEach(btn => {
+    const tipoBotao = btn.textContent.toLowerCase().includes("categorias") ? "categorias" : "informacoes";
+    if (tipoBotao === tipo) {
+      btn.classList.toggle("ativo");
+    } else {
+      btn.classList.remove("ativo");
+    }
+  });
+
+  const botaoAtivo = document.querySelector(".botao-explicativo.ativo");
+
+  // Se nenhum botão está ativo, esconde a área
+  if (!botaoAtivo) {
+    area.classList.remove("visivel");
+    setTimeout(() => {
+      area.innerHTML = "";
+    }, 300);
+    return;
+  }
+
+  // Troca conteúdo com animação
+  area.classList.remove("visivel");
   setTimeout(() => {
     if (tipo === "categorias") {
       area.innerHTML = `
@@ -198,7 +220,6 @@ function mostrarExplicacao(tipo) {
       `;
     }
 
-    area.classList.remove("fade-out");
-    area.classList.add("fade-in");
+    area.classList.add("visivel");
   }, 300);
 }
