@@ -1,0 +1,183 @@
+.header-dev {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    background-color: var(--preto);
+    color: var(--branco);
+  }
+  
+  .header-dev .logo {
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Arial Black', sans-serif;
+  }
+  
+  .header-dev .titulo-dev {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+
+  .secao-introducao {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: var(--branco);
+  }
+  
+  .secao-introducao h2 {
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', sans-serif;
+    margin-bottom: 15px;
+  }
+  
+  .texto-introducao {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+  
+  .texto-animado {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+  
+  .texto-animado.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .imagem-interativa {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    perspective: 1000px;
+  }
+  
+  
+  .imagem-interativa img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);     
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .imagem-interativa:hover img {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  }
+  
+  .imagem-interativa:hover img.inclinada-esquerda {
+    transform: rotateY(-10deg);
+  }
+  
+  .imagem-interativa:hover img.inclinada-direita {
+    transform: rotateY(10deg);
+  }
+  
+  .secao-motivos {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    color: var(--branco);
+  }
+  
+  .secao-motivos h2 {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', sans-serif;
+    margin-bottom: 40px;
+  }
+  
+  .motivo-linguagem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 30px auto;
+    text-align: left;
+  }
+  
+  .motivo-linguagem i {
+    font-size: 50px;
+  }
+  
+  .motivo-linguagem .fa-html5 {
+    color: #f06529;
+  }
+  
+  .motivo-linguagem .fa-css3-alt {
+    color: #2965f1;
+  }
+  
+  .motivo-linguagem .fa-js {
+    color: #f7df1e;
+  }
+  
+  .texto-linguagem h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  
+  .texto-linguagem p {
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+
+  .linha-do-tempo {
+    position: relative;
+    margin: 80px auto;
+    padding-left: 40px;
+    max-width: 800px;
+    border-left: 4px solid var(--branco);
+  }
+  
+  .etapa {
+    position: relative;
+    margin-bottom: 60px;
+    padding-left: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+  
+  .etapa.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .ponto {
+    position: absolute;
+    left: -12px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background-color: var(--branco);
+    border-radius: 50%;
+    border: 3px solid var(--preto);
+  }
+  
+  .conteudo h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+  
+  .conteudo span {
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  .conteudo p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  
