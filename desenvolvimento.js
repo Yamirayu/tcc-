@@ -31,3 +31,15 @@ imagem.parentElement.addEventListener("mouseleave", () => {
   imagem.style.transform = "rotateX(0deg) rotateY(0deg)";
 });
 
+const etapas = document.querySelectorAll(".etapa");
+
+const observerEtapas = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visivel");
+      observerEtapas.unobserve(entry.target);
+    }
+  });
+});
+
+etapas.forEach(etapa => observerEtapas.observe(etapa));

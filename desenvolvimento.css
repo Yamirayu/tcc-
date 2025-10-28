@@ -163,11 +163,20 @@
     background-color: var(--branco);
     border-radius: 50%;
     border: 3px solid var(--preto);
+    z-index: 1;
+  }
+  
+  .conteudo {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 3px solid var(--branco);
   }
   
   .conteudo h3 {
     font-size: 22px;
     margin-bottom: 5px;
+    color: var(--branco);
   }
   
   .conteudo span {
@@ -178,6 +187,6 @@
   .conteudo p {
     font-size: 16px;
     line-height: 1.6;
+    color: var(--branco);
   }
-
   
