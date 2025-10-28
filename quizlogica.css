@@ -1,69 +1,153 @@
 :root {
-    --preto: #00063e;
-    --branco: #fff;
-    --cinza-claro: #b3b3b3;
-    --laranja: #ffa500;
-  }
-  
-  body {
-    background-color: var(--preto);
-    color: var(--branco);
-    font-family: 'Trebuchet MS', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  #quiz-container {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 0 10px var(--laranja);
-    text-align: center;
-  }
-  
-  #quiz-pergunta {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  #quiz-opcoes {
-    list-style: none;
-    padding: 0;
-  }
-  
-  #quiz-opcoes li {
-    background-color: var(--cinza-claro);
-    color: var(--preto);
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  #quiz-opcoes li:hover {
-    background-color: var(--laranja);
-    color: var(--branco);
-  }
-  
-  #quiz-proximo {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: var(--laranja);
-    color: var(--preto);
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  #quiz-proximo:hover {
-    transform: scale(1.05);
-  }
+  --preto: #00063e;
+  --branco: #fff;
+  --cinza-claro: #b3b3b3;
+  --laranja: #ffa500;
+  --verde-correto: #00cc66;
+  --vermelho-errado: #ff4d4d;
+}
 
-  
+body {
+  background-color: var(--preto);
+  color: var(--branco);
+  font-family: 'Trebuchet MS', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+
+#tela-inicial {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px #333;
+  text-align: center;
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#tela-inicial h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+#tela-inicial p {
+  font-size: 1.1em;
+  margin-bottom: 30px;
+  color: #cccccc;
+}
+
+#btn-iniciar {
+  background-color: #333;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 12px 24px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#btn-iniciar:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+#quiz-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 10px var(--laranja);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+#quiz-explicacao {
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--cinza-claro);
+  font-size: 18px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px var(--laranja);
+  text-align: center;
+  line-height: 1.5;
+  transition: opacity 0.3s ease;
+  margin-bottom: 16px;
+}
+
+#quiz-pergunta {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#quiz-opcoes {
+  list-style: none;
+  padding: 0;
+}
+
+#quiz-opcoes li {
+  background-color: var(--cinza-claro);
+  color: var(--preto);
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#quiz-opcoes li:hover {
+  background-color: var(--laranja);
+  color: var(--branco);
+}
+
+#quiz-proximo {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--laranja);
+  color: var(--preto);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#quiz-proximo:hover {
+  transform: scale(1.05);
+}
+
+#quiz-dica {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--laranja);
+  border: 2px solid var(--laranja);
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#quiz-dica:hover {
+  background-color: var(--laranja);
+  color: var(--preto);
+  transform: scale(1.05);
+}
+
+#quiz-dica:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

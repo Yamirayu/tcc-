@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Logica/programação</title>
-    <link rel="stylesheet" href="quizlogica.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz de Lógica/Programação</title>
+  <link rel="stylesheet" href="quizlogica.css" />
 </head>
 <body>
-   
-    <div id="quiz-container">
-        <h2 id="quiz-pergunta">Pergunta aqui</h2>
-        <ul id="quiz-opcoes">
-        </ul>
-        <button id="quiz-proximo">Próxima Pergunta</button>
-      </div>      
 
-    <script src="quizlogica.js"></script>
+  <div id="tela-inicial">
+    <h1>Quiz de Lógica</h1>
+    <p>Teste seu raciocínio com 10 perguntas aleatórias por rodada!</p>
+    <button id="btn-iniciar">Iniciar Quiz</button>
+  </div>  
+
+  <div id="quiz-container">
+    <h2 id="quiz-pergunta">Pergunta aqui</h2>
+    <ul id="quiz-opcoes"></ul>
+    <button id="quiz-proximo">Próxima Pergunta</button>
+    <button id="quiz-dica">Dica</button>
+  </div>
+
+  <!-- Div para mostrar explicação após clicar em "Dica" -->
+  <div id="quiz-explicacao"></div>
+
+  <script src="quizlogica.js"></script>
 </body>
 </html>
