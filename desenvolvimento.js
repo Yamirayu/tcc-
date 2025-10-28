@@ -1,3 +1,4 @@
+// Animação de texto ao entrar na tela
 const textos = document.querySelectorAll(".texto-animado");
 
 const observerTexto = new IntersectionObserver((entries) => {
@@ -11,6 +12,7 @@ const observerTexto = new IntersectionObserver((entries) => {
 
 textos.forEach(texto => observerTexto.observe(texto));
 
+// Efeito 3D na imagem interativa
 const imagem = document.querySelector(".imagem-interativa img");
 
 imagem.parentElement.addEventListener("mousemove", (e) => {
@@ -21,8 +23,8 @@ imagem.parentElement.addEventListener("mousemove", (e) => {
   const centerX = rect.width / 2;
   const centerY = rect.height / 2;
 
-  const rotateX = ((y - centerY) / centerY) * 10; // Inclinação vertical
-  const rotateY = ((x - centerX) / centerX) * 10; // Inclinação horizontal
+  const rotateX = ((y - centerY) / centerY) * 10;
+  const rotateY = ((x - centerX) / centerX) * 10;
 
   imagem.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
 });
@@ -31,6 +33,7 @@ imagem.parentElement.addEventListener("mouseleave", () => {
   imagem.style.transform = "rotateX(0deg) rotateY(0deg)";
 });
 
+// Animação das etapas da linha do tempo
 const etapas = document.querySelectorAll(".etapa");
 
 const observerEtapas = new IntersectionObserver((entries) => {
@@ -43,3 +46,16 @@ const observerEtapas = new IntersectionObserver((entries) => {
 });
 
 etapas.forEach(etapa => observerEtapas.observe(etapa));
+
+const tempo = document.querySelector(".linha-do-tempo");
+
+window.addEventListener("scroll", () => {
+  const rect = tempo.getBoundingClientRect();
+  const alturaVisivel = window.innerHeight - rect.top;
+
+  if (alturaVisivel > 0) {
+    const alturaMax = tempo.offsetHeight;
+    const novaAltura = Math.min(alturaVisivel, alturaMax);
+    linha.style.height = novaAltura + "px";
+  }
+});
