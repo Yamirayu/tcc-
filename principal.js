@@ -13,7 +13,9 @@ const movies = [
   { nome: "Jogo da Galinha", src: "galinhacapa.png", link: "jogodagalinha.html" },
   { nome: "Ping-Pong", src: "pongcapa.png", link: "pingpong.html" },
   { nome: "Julinator", src: "julinatorcapa.jpg", link: "estrategia.html" },
-  { nome: "Lipenator", src: "lipenatorcapa.jpg", link: "reflexo.html" }
+  { nome: "Lipenator", src: "lipenatorcapa.jpg", link: "reflexo.html" },
+  { nome: "Torre de Hanoi", src: "torrelogo1.jpg", link: "torredehanoi.html" },
+  { nome: "Dama", src: "damaslogo1.jpg", link: "damas.html" }
 ];
 
 const descriptions = Array(movies.length).fill("Empolgante · Estratégico · Educativo");
