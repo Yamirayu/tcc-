@@ -1,0 +1,145 @@
+body {
+    background-color: rgb(11, 0, 69);
+    font-family: Arial, sans-serif;
+}
+
+.pergunta ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+  
+  .pergunta li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f9f9f900;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  .pergunta input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #12024f;
+    background-color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  .pergunta input[type="radio"]:checked {
+    background-color: #001329;
+  }
+  
+  .pergunta label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  #explicacao,
+  #etapa,
+  #quiz,
+  #resultado-final {
+    background-color: #0272a6;
+    width: 600px;
+    border-radius: 15px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  h1,
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  textarea {
+    width: 90%;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #3e538e;
+  }
+  
+  #btn-iniciar {
+    background-color: #5d10a0;
+    color: #ffffff;
+  }
+  
+  #mostrarResposta {
+    background-color: #ff4444;
+    color: white;
+  }
+  
+  #verificacao {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  #quiz .pergunta {
+    display: block;
+    margin-top: 20px;
+  }  
+  
+  #quiz ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+  
+  #quiz li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f9f9f900;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  #quiz input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #12024f;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  #quiz input[type="radio"]:checked {
+    background-color: #001329;
+  }
+  
+  #quiz label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  #resultado-final img {
+    width: 200px;
+    height: auto;
+    margin-top: 20px;
+  }
+  

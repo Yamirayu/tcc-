@@ -1,333 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutorial Calculadora</title>
-    <style>
-        body {
-            background-color: rgb(11, 0, 69);
-            font-family: Arial, sans-serif;
-        }
-
-        .pergunta ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        .pergunta li {
-            margin-bottom: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            background-color: #f9f9f900;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-
-        .pergunta input[type="radio"] {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #12024f;
-            background-color: #fff;
-            cursor: pointer;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .pergunta input[type="radio"]:checked {
-            background-color: #001329;
-        }
-
-        .pergunta label {
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        #explicacao,
-        #etapa,
-        #quiz,
-        #resultado-final {
-            background-color: #0272a6;
-            width: 600px;
-            border-radius: 15px;
-            margin: 40px auto;
-            padding: 20px;
-            text-align: center;
-            color: white;
-        }
-
-        h1,
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        textarea {
-            width: 90%;
-            height: 100px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #3e538e;
-        }
-
-        #btn-iniciar {
-            background-color: #5d10a0;
-            color: #ffffff;
-        }
-
-        #mostrarResposta {
-            background-color: #ff4444;
-            color: white;
-        }
-
-        #verificacao {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        #quiz ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        #quiz li {
-            margin-bottom: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            background-color: #f9f9f900;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-
-        #quiz input[type="radio"] {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #12024f;
-            background-color: #fff;
-            cursor: pointer;
-        }
-
-        #quiz input[type="radio"]:checked {
-            background-color: #001329;
-        }
-
-        #quiz label {
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        #resultado-final img {
-            width: 200px;
-            height: auto;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial Calculadora</title>
+  <link rel="stylesheet" href="calculadora.css" />
 </head>
-
 <body>
-    <a href="pingpong.html"><button>Voltar</button></a>
+  <a href="pingpong.html"><button>Voltar</button></a>
 
-    <div id="explicacao">
-        <h1>Como Criar uma Calculadora</h1>
-        <p id="texto-explicacao">
-            Aprenda passo a passo como criar uma calculadora com HTML, CSS e JavaScript.<br><br>
-            Digite o código sugerido em cada etapa. Se errar 4 vezes, poderá ver a resposta correta.<br><br>
-            Clique abaixo para começar!
-        </p>
-        <button id="btn-iniciar">Iniciar Tutorial</button>
-    </div>
+  <div id="explicacao">
+    <h1>Como Criar uma Calculadora</h1>
+    <p id="texto-explicacao">
+      Aprenda passo a passo como criar uma calculadora com HTML, CSS e JavaScript.<br><br>
+      Digite o código sugerido em cada etapa. Se errar 4 vezes, poderá ver a resposta correta.<br><br>
+      Clique abaixo para começar!
+    </p>
+    <button id="btn-iniciar">Iniciar Tutorial</button>
+  </div>
 
-    <div id="etapa" style="display:none;">
-        <h2 id="titulo-etapa"></h2>
-        <p id="explicacao-etapa"></p>
-        <textarea id="codigoUsuario" placeholder="Digite o código aqui..."></textarea><br>
-        <button onclick="verificarCodigo()">Verificar</button>
-        <div id="verificacao"></div>
-        <button id="mostrarResposta" onclick="mostrarResposta()" style="display:none;">Mostrar resposta</button>
-        <button onclick="proximaEtapa()">Próxima etapa</button>
-    </div>
+  <div id="etapa" style="display:none;">
+    <h2 id="titulo-etapa"></h2>
+    <p id="explicacao-etapa"></p>
+    <textarea id="codigoUsuario" placeholder="Digite o código aqui..."></textarea><br>
+    <button onclick="verificarCodigo()">Verificar</button>
+    <div id="verificacao"></div>
+    <button id="mostrarResposta" onclick="mostrarResposta()" style="display:none;">Mostrar resposta</button>
+    <button onclick="proximaEtapa()">Próxima etapa</button>
+  </div>
+  
 
-    <div id="quiz" style="display:none;"></div>
-    <div id="resultado-final" style="display:none;"></div>
+  <div id="quiz" style="display:none;"></div>
+  <div id="resultado-final" style="display:none;"></div>
 
-    <script>
-        const etapas = [
-            { titulo: "Etapa 1", explicacao: "Crie a estrutura da calculadora com uma <div>.", resposta: "<div id='calculadora'></div>" },
-            { titulo: "Etapa 2", explicacao: "Adicione um campo <input> com id 'display'.", resposta: "<input type='text' id='display'>" },
-            { titulo: "Etapa 3", explicacao: "Crie botões numéricos como <button>1</button>.", resposta: "<button>1</button>" },
-            { titulo: "Etapa 4", explicacao: "Adicione botões de operação como <button>+</button>.", resposta: "<button>+</button>" },
-            { titulo: "Etapa 5", explicacao: "Adicione um botão de igual <button>=</button>.", resposta: "<button>=</button>" },
-            { titulo: "Etapa 6", explicacao: "Adicione um botão de limpar <button>C</button>.", resposta: "<button>C</button>" },
-            { titulo: "Etapa 7", explicacao: "Use JavaScript para capturar cliques com addEventListener.", resposta: "addEventListener" },
-            { titulo: "Etapa 8", explicacao: "Mostre o resultado usando getElementById('display').value.", resposta: "getElementById('display').value" }
-        ];
-
-        let etapaAtual = 0;
-        let tentativas = 0;
-
-        document.getElementById("btn-iniciar").addEventListener("click", () => {
-            document.getElementById("explicacao").style.display = "none";
-            document.getElementById("etapa").style.display = "block";
-            carregarEtapa();
-        });
-
-        function carregarEtapa() {
-            const etapa = etapas[etapaAtual];
-            document.getElementById("titulo-etapa").innerText = etapa.titulo;
-            document.getElementById("explicacao-etapa").innerText = etapa.explicacao;
-            document.getElementById("codigoUsuario").value = "";
-            document.getElementById("verificacao").innerText = "";
-            document.getElementById("mostrarResposta").style.display = "none";
-            tentativas = 0;
-        }
-
-        function verificarCodigo() {
-            const entrada = document.getElementById("codigoUsuario").value.trim();
-            const esperado = etapas[etapaAtual].resposta;
-            if (entrada.includes(esperado)) {
-                document.getElementById("verificacao").innerText = "✅ Correto!";
-                document.getElementById("mostrarResposta").style.display = "none";
-            } else {
-                tentativas++;
-                document.getElementById("verificacao").innerText = `❌ Tente novamente. (${tentativas}/4)`;
-                if (tentativas >= 4) {
-                    document.getElementById("mostrarResposta").style.display = "inline";
-                }
-            }
-        }
-
-        function mostrarResposta() {
-            document.getElementById("codigoUsuario").value = etapas[etapaAtual].resposta;
-            document.getElementById("verificacao").innerText = "✅ Aqui está a resposta correta.";
-        }
-
-        function proximaEtapa() {
-            etapaAtual++;
-            if (etapaAtual < etapas.length) {
-                carregarEtapa();
-            } else {
-                iniciarQuiz();
-            }
-        }
-        function iniciarQuiz() {
-            document.getElementById("etapa").style.display = "none";
-            document.getElementById("quiz").style.display = "block";
-
-            const perguntas = [
-                {
-                    pergunta: "Qual tag usamos para criar a estrutura da calculadora?",
-                    opcoes: ["<div>", "<span>", "<section>", "<form>"],
-                    resposta: 0
-                },
-                {
-                    pergunta: "Qual elemento exibe os números digitados?",
-                    opcoes: ["<input>", "<textarea>", "<label>", "<p>"],
-                    resposta: 0
-                },
-                {
-                    pergunta: "Como adicionamos um botão em HTML?",
-                    opcoes: ["<btn>", "<button>", "<input type='btn'>", "<click>"],
-                    resposta: 1
-                },
-                {
-                    pergunta: "Qual operador representa multiplicação em JavaScript?",
-                    opcoes: ["x", "*", "×", "mult"],
-                    resposta: 1
-                },
-                {
-                    pergunta: "Como capturamos o clique de um botão?",
-                    opcoes: ["addEventListener", "onClick", "clickHandler", "buttonClick"],
-                    resposta: 0
-                },
-                {
-                    pergunta: "Como acessamos o valor do display?",
-                    opcoes: ["display.value", "getElementById('display').value", "input.value", "screen.text"],
-                    resposta: 1
-                },
-                {
-                    pergunta: "Qual botão usamos para limpar a calculadora?",
-                    opcoes: ["C", "AC", "DEL", "CLR"],
-                    resposta: 0
-                },
-                {
-                    pergunta: "Qual linguagem usamos para lógica da calculadora?",
-                    opcoes: ["HTML", "CSS", "JavaScript", "Python"],
-                    resposta: 2
-                }
-            ];
-
-            let perguntaAtual = 0;
-            let acertos = 0;
-            function mostrarPergunta() {
-                const p = perguntas[perguntaAtual];
-                let html = `<div class="pergunta"><h2>Pergunta ${perguntaAtual + 1}</h2><p>${p.pergunta}</p><ul>`;
-                p.opcoes.forEach((op, i) => {
-                    html += `
-      <li>
-        <label>
-          <input type="radio" name="q${perguntaAtual}" value="${i}"> ${op}
-        </label>
-      </li>`;
-                });
-                html += `</ul><button onclick="verificarResposta()">Enviar</button></div>`;
-                document.getElementById("quiz").innerHTML = html;
-            }
-
-            window.verificarResposta = function () {
-                const selecionado = document.querySelector(`input[name="q${perguntaAtual}"]:checked`);
-                if (!selecionado) {
-                    alert("Selecione uma opção antes de continuar.");
-                    return;
-                }
-                if (parseInt(selecionado.value) === perguntas[perguntaAtual].resposta) {
-                    acertos++;
-                }
-                perguntaAtual++;
-                if (perguntaAtual < perguntas.length) {
-                    mostrarPergunta();
-                } else {
-                    mostrarResultadoFinal();
-                }
-            };
-
-            function mostrarResultadoFinal() {
-                document.getElementById("quiz").style.display = "none";
-                document.getElementById("resultado-final").style.display = "block";
-                document.getElementById("resultado-final").innerHTML = `
-      <h2>Resultado Final</h2>
-      <p>Você acertou ${acertos} de ${perguntas.length} perguntas.</p>
-      <img src="${acertos < 5 ? 'ruim.jpg' : acertos <= 6 ? 'medio.jpg' : 'otimo.jpg'}" alt="Resultado">
-    `;
-            }
-
-            mostrarPergunta();
-        }
-
-    </script>
+  <script src="calculadora.js"></script>
 </body>
-
 </html>
