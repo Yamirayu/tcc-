@@ -1,0 +1,110 @@
+/* Impede rolagem da tela */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #a8e6cf, #dcedc1);
+  text-align: center;
+  color: #2e7d32;
+  position: relative;
+}
+
+/* Logo no topo */
+#logo {
+  width: 250px;
+  margin-top: 20px;
+  z-index: 1000;
+}
+
+/* Cronômetro abaixo da logo */
+#timer {
+  font-size: 1.2em;
+  margin: 10px 0 20px;
+}
+
+/* Área das torres */
+#game {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.tower {
+  width: 120px;
+  height: 300px;
+  background-color: #e8f5e9;
+  border: 2px solid #81c784;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Discos */
+.disk {
+  height: 30px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px solid #388e3c;
+}
+
+.disk:hover {
+  transform: scale(1.05);
+}
+
+.disk-0 { width: 40px; background-color: #66bb6a; }
+.disk-1 { width: 70px; background-color: #4caf50; }
+.disk-2 { width: 100px; background-color: #388e3c; }
+.disk-3 { width: 130px; background-color: #2e7d32; }
+/* Removido disk-4 para manter 4 discos */
+
+#moves {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+/* Mensagens */
+#error-message {
+  margin-top: 10px;
+  color: #c62828;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+#success-message {
+  margin-top: 20px;
+  color: #2e7d32;
+  font-weight: bold;
+  font-size: 1.3em;
+  transition: opacity 0.3s ease;
+}
+
+/* Botão de reinício no canto superior direito */
+#reset-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#reset-button {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#reset-button:hover {
+  transform: scale(1.2);
+}

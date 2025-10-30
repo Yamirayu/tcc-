@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torre de Hanoi</title>
+  <link rel="stylesheet" href="torredehanoi.css" />
+</head>
+<body>
+  <!-- Botão de reinício no canto superior direito -->
+  <div id="reset-container">
+    <img src="reset.png" alt="Reiniciar Jogo" id="reset-button" />
+  </div>
+
+  <!-- Logo no lugar do título -->
+  <img src="torrelogo.png" alt="Logo Torre de Hanoi" id="logo" />
+
+  <!-- Cronômetro abaixo da logo -->
+  <p id="timer">Tempo restante: 03:00</p>
+
+  <!-- Torres do jogo -->
+  <div id="game">
+    <div class="tower" id="tower-0"></div>
+    <div class="tower" id="tower-1"></div>
+    <div class="tower" id="tower-2"></div>
+  </div>
+
+  <!-- Contador de movimentos -->
+  <p id="moves">Movimentos: 0</p>
+
+  <!-- Mensagens de erro e sucesso -->
+  <div id="error-message"></div>
+  <div id="success-message"></div>
+
+  <!-- Script principal -->
+  <script src="torredehanoi.js"></script>
+</body>
+</html>
