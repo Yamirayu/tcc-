@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Divisão Difícil</title>
+  <link rel="stylesheet" href="pp.css">
+</head>
+<body>
+  <a href="pingpong.html"><button>voltar</button></a>
+  <div id="explicacao">
+    <h1>Divisão</h1>
+    <p>
+      A divisão é uma operação matemática que consiste em repartir ou distribuir um valor em partes iguais.<br><br>
+      Neste quiz, você verá contas com números maiores e resultados decimais, exigindo atenção e precisão.<br><br>
+      Exemplo: 1250 ÷ 25 = ?<br>
+      Resposta: 50<br>
+      Basta dividir o número maior pelo menor com cuidado para obter o resultado correto.
+    </p>
+    <button id="btn-iniciar-quiz">quiz divisão</button>
+    <div id="quiz-container"></div>
+  </div>
+
+  <script>
+    document.getElementById("btn-iniciar-quiz").addEventListener("click", function () {
+      iniciarQuiz();
+    });
+
+    function iniciarQuiz() {
+      document.getElementById("btn-iniciar-quiz").style.display = "none";
+      document.querySelector("h1").style.display = "none";
+      document.querySelector("p").style.display = "none";
+      document.getElementById("quiz-container").style.display = "block";
+
+      const perguntas = [];
+      for (let i = 1; i <= 15; i++) {
+        const divisor = Math.floor(Math.random() * 90) + 10; // entre 10 e 99
+        const quociente = parseFloat((Math.random() * 90 + 10).toFixed(2)); // entre 10.00 e 99.99
+        const dividendo = parseFloat((divisor * quociente).toFixed(2));
+        const resposta = parseFloat((dividendo / divisor).toFixed(2));
+        perguntas.push({
+          pergunta: `Quanto é ${dividendo} ÷ ${divisor}?`,
+          resposta: resposta,
+          opcoes: [
+            resposta,
+            parseFloat((resposta + 1).toFixed(2)),
+            parseFloat((resposta - 1).toFixed(2)),
+            parseFloat((resposta + 0.5).toFixed(2))
+          ]
+        });
+      }
+
+      let acertos = 0;
+      let perguntaAtual = 0;
+
+      function mostrarPergunta() {
+        const pergunta = perguntas[perguntaAtual];
+        const opcoes = pergunta.opcoes.sort(() => Math.random() - 0.5);
+        const html = `
+          <p>${pergunta.pergunta}</p>
+          <ul>
+            ${opcoes.map(opcao => `<li><input type="radio" name="opcao" value="${opcao}">${opcao}</li>`).join('')}
+          </ul>
+          <button id="enviar">Enviar</button>
+        `;
+        document.getElementById('quiz-container').innerHTML = html;
+        document.getElementById('enviar').addEventListener('click', verificarResposta);
+      }
+
+      function verificarResposta() {
+        const opcaoSelecionada = parseFloat(document.querySelector('input[name="opcao"]:checked').value);
+        const respostaCerta = perguntas[perguntaAtual].resposta;
+        if (Math.abs(opcaoSelecionada - respostaCerta) < 0.01) {
+          acertos++;
+        }
+        perguntaAtual++;
+        if (perguntaAtual < perguntas.length) {
+          mostrarPergunta();
+        } else {
+          mostrarResultado();
+        }
+      }
+
+      function mostrarResultado() {
+        const html = `
+          <p>Você acertou ${acertos} perguntas.</p>
+          <img id="imagem-resultado" src="${acertos < 7 ? 'ruim.jpg' : acertos <= 11 ? 'medio.jpg' : 'otimo.jpg'}" alt="Resultado">
+        `;
+        document.getElementById('quiz-container').innerHTML = html;
+
+        const imagemResultado = document.getElementById('imagem-resultado');
+        if (imagemResultado) {
+          imagemResultado.style.width = '200px';
+          imagemResultado.style.height = 'auto';
+        }
+      }
+
+      mostrarPergunta();
+    }
+  </script>
+</body>
+</html>

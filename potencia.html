@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Potência</title>
+  <link rel="stylesheet" href="pp.css">
+</head>
+
+<body>
+  <a href="pingpong.html"><button>Voltar</button></a>
+  <div id="explicacao">
+    <h1>Potência</h1>
+    <p>
+      Potência é uma forma de representar multiplicações repetidas de um número. Por exemplo, 2³ significa 2 × 2 × 2 =
+      8.
+      O número que está sendo multiplicado é chamado de <strong>base</strong>, e o número de vezes que ele aparece é o
+      <strong>expoente</strong>.
+      Algumas regras importantes:
+      <br><br>
+      • Qualquer número elevado a 0 é igual a 1. Ex: 5⁰ = 1
+      • Expoente 1 mantém o número igual. Ex: 7¹ = 7
+      • Expoente negativo inverte a base. Ex: 2⁻² = 1 / (2²) = 1/4 = 0.25
+      • Potência com base negativa pode gerar resultado negativo ou positivo, dependendo do expoente.
+      <br><br>
+      Agora que você entendeu, clique no botão abaixo para testar seus conhecimentos!
+    </p>
+
+    <button id="btn-iniciar-quiz">Quiz de Potência</button>
+    <div id="quiz-container"></div>
+  </div>
+
+  <script>
+    document.getElementById("btn-iniciar-quiz").addEventListener("click", function () {
+      iniciarQuiz();
+    });
+
+    function iniciarQuiz() {
+      document.getElementById("btn-iniciar-quiz").style.display = "none";
+      document.querySelector("h1").style.display = "none";
+      document.querySelector("p").style.display = "none";
+      document.getElementById("quiz-container").style.display = "block";
+
+      const perguntas = [];
+      for (let i = 1; i <= 15; i++) {
+        const base = Math.floor(Math.random() * 5) + 2;
+        const expoente = Math.floor(Math.random() * 3) + 1;
+        perguntas.push({
+          pergunta: `Quanto é ${base}^${expoente}?`,
+          resposta: Math.pow(base, expoente),
+          opcoes: [
+            Math.pow(base, expoente),
+            Math.pow(base, expoente) + 1,
+            Math.pow(base, expoente) - 1,
+            Math.pow(base, expoente) + 2
+          ]
+        });
+      }
+
+      let acertos = 0;
+      let perguntaAtual = 0;
+
+      function mostrarPergunta() {
+        const pergunta = perguntas[perguntaAtual];
+        const opcoes = pergunta.opcoes.sort(() => Math.random() - 0.5);
+        const html = `
+          <p>${pergunta.pergunta}</p>
+          <ul>
+            ${opcoes.map(opcao => `<li><input type="radio" name="opcao" value="${opcao}">${opcao}</li>`).join('')}
+          </ul>
+          <button id="enviar">Enviar</button>
+        `;
+        document.getElementById('quiz-container').innerHTML = html;
+        document.getElementById('enviar').addEventListener('click', verificarResposta);
+      }
+
+      function verificarResposta() {
+        const opcaoSelecionada = parseFloat(document.querySelector('input[name="opcao"]:checked').value);
+        const respostaCerta = perguntas[perguntaAtual].resposta;
+        if (Math.abs(opcaoSelecionada - respostaCerta) < 0.01) {
+          acertos++;
+        }
+        perguntaAtual++;
+        if (perguntaAtual < perguntas.length) {
+          mostrarPergunta();
+        } else {
+          mostrarResultado();
+        }
+      }
+
+      function mostrarResultado() {
+        const html = `
+        <p>Você acertou ${acertos} perguntas.</p>
+        <img id="imagem-resultado" src="${acertos < 7 ? 'ruim.jpg' : acertos <= 11 ? 'medio.jpg' : 'otimo.jpg'}" alt="Resultado">
+    `;
+        document.getElementById('quiz-container').innerHTML = html;
+
+        // Adiciona estas linhas para diminuir a imagem via JavaScript
+        const imagemResultado = document.getElementById('imagem-resultado');
+        if (imagemResultado) {
+          imagemResultado.style.width = '200px'; // Define a largura desejada, por exemplo, 200px
+          imagemResultado.style.height = 'auto'; // Mantém a proporção
+        }
+      }
+      mostrarPergunta();
+    }
+  </script>
+</body>
+
+</html>

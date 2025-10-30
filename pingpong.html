@@ -1,48 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Ping Pong </title>
-  <!-- Add the Bootstrap CSS file -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="pp.css">
 
-  <link rel="icon" href="4_Sem_Título_20250903110702-removebg-preview.png"type="OIP.webp">
-  <link rel="stylesheet" href="pingpong.css" />
-  <style>
-    canvas {
-      border: 1px solid rgb(255, 255, 255);
-    }
-  </style>
 </head>
 
 <body>
-  <div class="container">
-    <canvas id="canvas" width="600" height="400"></canvas>
-  </div>
-  <div class="button">
-    <button id="start-btn" class="btn">Jogar</button>
-    <button id="pause-btn" class="btn">Pausa</button>
-    <button id="restart-btn" class="btn">Jogar de novo</button>
-  </div>
-  <p class="control">Controle: Jogador Esquerdo (W e S) | Jogador Direito (↑ e ↓)</p>
-  <!-- Add a modal element with an ID -->
-  <div class="modal" tabindex="-1" role="dialog" id="message-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <h5 id="message"></h5>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="message-modal-close" class="btn btn-secondary" data-dismiss="modal">
-            Fechar
-          </button>
-        </div>
-      </div>
+  <div class="ya">
+
+    <div id="tela-inicial"><br><br>
+      <h1>Quiz de Matemática</h1><br>
+
+      <ul>
+        <ul>
+          <a href="adicao.html"><button>Adição</button></a>
+          <a href="subtracao.html"><button>Subtração</button></a>
+          <a href="multiplicacao.html"><button>Multiplicação</button></a><br><br>
+          <a href="divisao.html"><button>Divisão</button></a>
+          <a href="potencia.html"><button>potência</button></a>
+          <a href="fração.html"><button>fração</button></a>
+          <a href="calculadora.html"><button>Calculadora</button></a> 
+        </ul>
+
+
+      </ul>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="pingpong.js"></script>
+  <div id="tela-resultado" style="display: none;">
+    <h1>Resultado</h1>
+    <p id="mensagem"></p>
+  </div>
 </body>
 
 </html>

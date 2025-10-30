@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Subtração Difícil</title>
+  <link rel="stylesheet" href="pp.css">
+</head>
+<body>
+  <a href="pingpong.html"><button>voltar</button></a>
+  <div id="explicacao">
+
+    <h1>Subtração</h1>
+    <p>
+      A subtração é uma operação matemática que representa a remoção de uma quantidade de outra.  
+      Neste quiz, você verá contas com números maiores e opções próximas para testar sua atenção e precisão.
+      <br><br>
+      Exemplo: 245 - 87 = ?<br>
+      Resposta: 158<br>
+      Basta subtrair o segundo número do primeiro com cuidado para obter o resultado correto.
+    </p>
+
+    <button id="btn-iniciar-quiz">quiz subtração</button>
+    <div id="quiz-container"></div>
+  </div>
+
+  <script>
+    document.getElementById("btn-iniciar-quiz").addEventListener("click", function () {
+      iniciarQuiz();
+    });
+
+    function iniciarQuiz() {
+      document.getElementById("btn-iniciar-quiz").style.display = "none";
+      document.querySelector("h1").style.display = "none";
+      document.querySelector("p").style.display = "none";
+      document.getElementById("quiz-container").style.display = "block";
+
+      const perguntas = [];
+      for (let i = 1; i <= 15; i++) {
+        const num1 = Math.floor(Math.random() * 900) + 100; // entre 100 e 999
+        const num2 = Math.floor(Math.random() * (num1 - 50)) + 50; // garante que num2 < num1
+        const resposta = num1 - num2;
+        perguntas.push({
+          pergunta: `Quanto é ${num1} - ${num2}?`,
+          resposta: resposta,
+          opcoes: [
+            resposta,
+            resposta + Math.floor(Math.random() * 10 + 1),
+            resposta - Math.floor(Math.random() * 10 + 1),
+            resposta + Math.floor(Math.random() * 20 + 5)
+          ]
+        });
+      }
+
+      let acertos = 0;
+      let perguntaAtual = 0;
+
+      function mostrarPergunta() {
+        const pergunta = perguntas[perguntaAtual];
+        const opcoes = pergunta.opcoes.sort(() => Math.random() - 0.5);
+        const html = `
+          <p>${pergunta.pergunta}</p>
+          <ul>
+            ${opcoes.map(opcao => `<li><input type="radio" name="opcao" value="${opcao}">${opcao}</li>`).join('')}
+          </ul>
+          <button id="enviar">Enviar</button>
+        `;
+        document.getElementById('quiz-container').innerHTML = html;
+        document.getElementById('enviar').addEventListener('click', verificarResposta);
+      }
+
+      function verificarResposta() {
+        const opcaoSelecionada = document.querySelector('input[name="opcao"]:checked');
+        if (!opcaoSelecionada) {
+          alert("Selecione uma opção antes de continuar.");
+          return;
+        }
+        const valor = parseInt(opcaoSelecionada.value);
+        const respostaCerta = perguntas[perguntaAtual].resposta;
+        if (valor === respostaCerta) {
+          acertos++;
+        }
+        perguntaAtual++;
+        if (perguntaAtual < perguntas.length) {
+          mostrarPergunta();
+        } else {
+          mostrarResultado();
+        }
+      }
+
+      function mostrarResultado() {
+        const html = `
+          <p>Você acertou ${acertos} perguntas.</p>
+          <img id="imagem-resultado" src="${acertos < 7 ? 'ruim.jpg' : acertos <= 11 ? 'medio.jpg' : 'otimo.jpg'}" alt="Resultado">
+        `;
+        document.getElementById('quiz-container').innerHTML = html;
+
+        const imagemResultado = document.getElementById('imagem-resultado');
+        if (imagemResultado) {
+          imagemResultado.style.width = '300px';
+          imagemResultado.style.height = 'auto';
+        }
+      }
+
+      mostrarPergunta();
+    }
+  </script>
+</body>
+</html>
