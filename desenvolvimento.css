@@ -12,13 +12,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 50px;
+    padding: 20px 40px;
     background-color: var(--preto);
     color: var(--branco);
   }
   
   .header-dev .logo {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     font-family: 'Arial Black', sans-serif;
   }
@@ -26,7 +26,8 @@ body {
   .header-dev .titulo-dev {
     flex: 1;
     text-align: center;
-    font-size: 24px;
+    margin-left: -100px;
+    font-size: 30px;
     font-family: 'Trebuchet MS', sans-serif;
   }
 
