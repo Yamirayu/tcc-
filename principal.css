@@ -82,39 +82,6 @@ nav a:hover {
   color: var(--branco);
 }
 
-/* Menu Explorar */
-.menu-explorar {
-  position: absolute;
-  top: 100px;
-  right: 50%;
-  transform: translateX(50%) scale(0.95);
-  background-color: #1e1e1e;
-  border: 1px solid #444;
-  padding: 20px;
-  border-radius: 8px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 999;
-}
-
-.menu-explorar.show {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(50%) scale(1);
-}
-
-.menu-explorar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.menu-explorar li {
-  margin-bottom: 10px;
-  color: var(--branco);
-}
-
 /* Barra de pesquisa */
 .barra-pesquisa {
   flex-shrink: 0;

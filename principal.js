@@ -10,10 +10,8 @@ let itemsPerPage = window.innerWidth < 900 ? 4 : 6;
 const movies = [
   { nome: "Jogo da Memória", src: "memoriacapa.png", link: "memoria.html" },
   { nome: "Jogo da Velha", src: "jogodavelhacapa.png", link: "velha.html" },
-  { nome: "Jogo da Galinha", src: "galinhacapa.png", link: "jogodagalinha.html" },
-  { nome: "Ping-Pong", src: "pongcapa.png", link: "pingpong.html" },
-  { nome: "Julinator", src: "julinatorcapa.jpg", link: "estrategia.html" },
-  { nome: "Lipenator", src: "lipenatorcapa.jpg", link: "reflexo.html" },
+  { nome: "Julinator", src: "julinatorcapa.jpg", link: "Akinator.html" },
+  { nome: "Lipenator", src: "lipenatorcapa.jpg", link: "Akinator2.html" },
   { nome: "Torre de Hanoi", src: "torrelogo1.jpg", link: "torredehanoi.html" },
   { nome: "Dama", src: "damaslogo1.jpg", link: "damas.html" }
 ];
