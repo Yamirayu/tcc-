@@ -3,26 +3,73 @@ let perguntas = [];
 let possiveis = [];
 let idxPergunta = 0;
 let respostasDadas = 0;
+
 const perguntaEl = document.getElementById("pergunta");
 const resultadoEl = document.getElementById("resultado");
 const btnSim = document.getElementById("sim");
 const btnNao = document.getElementById("nao");
 const btnIniciar = document.getElementById("iniciar");
 const imgFelipe = document.querySelector('.personagem-felipe');
-let idxImagem = 1; // Começa com felipe1.png
 
-// Carrega os dados do arquivo JSON
-fetch("dados.json")
-    .then(response => response.json())
-    .then(json => {
-        dados = json;
-        perguntas = Object.keys(dados[0]).filter(p => p !== "Nome");
-        // Oculta botões de resposta no início
-        btnSim.style.display = "none";
-        btnNao.style.display = "none";
-        btnIniciar.textContent = "Iniciar";
-        imgFelipe.src = `Felipe${idxImagem}.png`; // Define imagem inicial
-    });
+btnSim.style.display = "none";
+btnNao.style.display = "none";
+btnIniciar.textContent = "Carregando dados...";
+
+// FUNÇÃO PARA EMBARALHAR ARRAYS (Fisher-Yates)
+function embaralhar(array) {
+    let currentIndex = array.length, randomIndex;
+    
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+
+// MÉTODO DE CARREGAMENTO: XMLHttpRequest
+function carregarDadosXHR() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "dados.json", true); 
+    
+    xhr.onload = function() {
+        if (xhr.status === 200 || (xhr.status === 0 && xhr.responseText)) {
+            try {
+                dados = JSON.parse(xhr.responseText);
+                if (dados.length === 0) {
+                    throw new Error("O arquivo dados.json está vazio.");
+                }
+                
+                perguntas = Object.keys(dados[0]).filter(p => p !== "Nome");
+                
+                btnIniciar.textContent = "Iniciar";
+                perguntaEl.textContent = `Clique em Iniciar para começar!`; 
+                
+                // === CONFIGURA A IMAGEM INICIAL Felipe1.png ===
+                if (imgFelipe) {
+                    imgFelipe.src = `Felipe1.png`;
+                }
+            } catch (e) {
+                perguntaEl.textContent = `Erro: O arquivo dados.json está inválido ou vazio. Detalhe: ${e.message}`;
+                btnIniciar.style.display = "none";
+            }
+        } else {
+            perguntaEl.textContent = `🚨 Falha Crítica: Não foi possível ler 'dados.json'. Status: ${xhr.status}.`;
+            btnIniciar.style.display = "none";
+        }
+    };
+    
+    xhr.onerror = function() {
+        perguntaEl.textContent = "Erro de Rede/Acesso: Falha ao tentar carregar o 'dados.json'.";
+        btnIniciar.style.display = "none";
+    };
+    
+    xhr.send();
+}
+
+carregarDadosXHR(); 
 
 // Mapeia perguntas técnicas para exibição
 function formatarPergunta(chave) {
@@ -51,14 +98,26 @@ function formatarPergunta(chave) {
 
 // Inicia o jogo
 btnIniciar.addEventListener("click", () => {
+    if (dados.length === 0 || perguntas.length === 0) {
+        perguntaEl.textContent = "Aguarde o carregamento dos dados.";
+        return;
+    }
+    
     possiveis = [...dados];
     idxPergunta = 0;
     respostasDadas = 0;
-    idxImagem = 1; // Reseta índice da imagem
-    imgFelipe.src = `felipe${idxImagem}.png`;
     resultadoEl.textContent = "";
+    
+    // Embaralha as perguntas a cada novo jogo
+    perguntas = embaralhar(perguntas);
+    
+    // Mantém a imagem inicial Felipe1.png
+    if (imgFelipe) {
+        imgFelipe.src = `Felipe1.png`; 
+        console.log("IMAGEM INICIAL: Felipe1.png"); // DEPURAR
+    }
+    
     perguntaEl.textContent = formatarPergunta(perguntas[idxPergunta]);
-    // Mostra botões de resposta, oculta botão iniciar
     btnIniciar.style.display = "none";
     btnSim.style.display = "inline-block";
     btnNao.style.display = "inline-block";
@@ -67,41 +126,65 @@ btnIniciar.addEventListener("click", () => {
 // Processa a resposta do usuário
 function responder(resposta) {
     const valor = resposta === "sim" ? 1 : 0;
-    possiveis = possiveis.filter(p => p[perguntas[idxPergunta]] === valor);
+    const chavePerguntaAtual = perguntas[idxPergunta];
+    
+    if (!chavePerguntaAtual) {
+         perguntaEl.textContent = "Erro: Acabaram as perguntas. Jogo finalizado.";
+         finalizarJogo();
+         return;
+    }
+    
+    possiveis = possiveis.filter(p => p[chavePerguntaAtual] === valor);
     idxPergunta++;
     respostasDadas++;
-    idxImagem = (idxImagem % 3) + 1; // Alterna imagem (1, 2, 3)
-    imgFelipe.src = `felipe${idxImagem}.png`;
+    
+    // === ALTERNA ALEATORIAMENTE ENTRE Felipe2.png e Felipe3.png ===
+    if (imgFelipe) {
+        const proximaImg = Math.random() < 0.5 ? 2 : 3;
+        const nomeArquivo = `Felipe${proximaImg}.png`;
+        imgFelipe.src = nomeArquivo;
+        
+        console.log(`IMAGEM TROCADA (Resposta ${respostasDadas}): ${nomeArquivo}`); // DEPURAR
+    }
+    // =================================================================
+
+    // 1. VERIFICA SE O JOGO JÁ TEM UM VENCEDOR CLARO (ACERTO IMEDIATO)
     if (possiveis.length === 1) {
         perguntaEl.textContent = "";
         resultadoEl.textContent = `Acredito que você pensou em: ${possiveis[0].Nome}. Acertei com ${respostasDadas} pergunta${respostasDadas > 1 ? 's' : ''}!`;
-        // Oculta botões de resposta, mostra botão iniciar com novo texto
-        btnSim.style.display = "none";
-        btnNao.style.display = "none";
-        btnIniciar.textContent = "Jogar novamente";
-        btnIniciar.style.display = "inline-block";
+        finalizarJogo();
         return;
     }
-    if (possiveis.length === 0) {
+
+    // 2. VERIFICA SE AS PERGUNTAS ACABARAM (TENTATIVA FORÇADA APÓS A 18ª PERGUNTA)
+    if (idxPergunta >= perguntas.length) {
         perguntaEl.textContent = "";
-        const aleatorio = dados[Math.floor(Math.random() * dados.length)];
-        resultadoEl.textContent = `Não consegui identificar com precisão. Mas talvez seja o ${aleatorio.Nome}. Fiz ${respostasDadas} pergunta${respostasDadas > 1 ? 's' : ''}.`;
-        btnSim.style.display = "none";
-        btnNao.style.display = "none";
-        btnIniciar.textContent = "Jogar novamente";
-        btnIniciar.style.display = "inline-block";
+        if (possiveis.length === 0) {
+            const aleatorio = dados.length > 0 ? dados[Math.floor(Math.random() * dados.length)] : {Nome: "um item de tecnologia"};
+            resultadoEl.textContent = `Não consegui identificar com precisão. Mas talvez seja o ${aleatorio.Nome}. Fiz ${respostasDadas} pergunta${respostasDadas > 1 ? 's' : ''}.`;
+        } else {
+            const escolha = possiveis[Math.floor(Math.random() * possiveis.length)];
+            resultadoEl.textContent = `Chegamos ao fim das ${respostasDadas} perguntas. Minha melhor tentativa é: ${escolha.Nome}.`;
+        }
+        finalizarJogo();
         return;
     }
-    if (idxPergunta < perguntas.length) {
-        perguntaEl.textContent = formatarPergunta(perguntas[idxPergunta]);
-    } else {
-        perguntaEl.textContent = "";
-        const escolha = possiveis[Math.floor(Math.random() * possiveis.length)];
-        resultadoEl.textContent = `Ainda não tenho certeza... mas pode ser: ${escolha.Nome}. Fiz ${respostasDadas} pergunta${respostasDadas > 1 ? 's' : ''}.`;
-        btnSim.style.display = "none";
-        btnNao.style.display = "none";
-        btnIniciar.textContent = "Jogar novamente";
-        btnIniciar.style.display = "inline-block";
+    
+    // 3. CONTINUA PERGUNTANDO
+    perguntaEl.textContent = formatarPergunta(perguntas[idxPergunta]);
+}
+
+// Função para centralizar a lógica de finalização do jogo
+function finalizarJogo() {
+    btnSim.style.display = "none";
+    btnNao.style.display = "none";
+    btnIniciar.textContent = "Jogar novamente";
+    btnIniciar.style.display = "inline-block";
+    
+    // === RETORNA PARA A IMAGEM INICIAL Felipe1.png APÓS FIM DO JOGO ===
+    if (imgFelipe) {
+        imgFelipe.src = `Felipe1.png`; 
+        console.log("IMAGEM FINAL: Felipe1.png"); // DEPURAR
     }
 }
 
