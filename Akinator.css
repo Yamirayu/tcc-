@@ -1,0 +1,125 @@
+/* Fundo e layout geral */
+body {
+    overflow: hidden;
+    background-image: url("blue.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Bangers', cursive;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: url('Cursorazul.png'), auto;
+    position: relative;
+}
+
+/* Personagem Juliano fixo no canto inferior esquerdo */
+.personagem-juliano {
+    position: fixed;
+    bottom: 40px;
+    left: 50px;
+    width: 300px;
+    height: auto;
+    z-index: 1002;
+}
+
+/* Botão de troca de modo no canto superior direito */
+#trocarModo {
+    position: absolute;
+    top: -45px;
+    right: 10px;
+    z-index: 1001;
+}
+#trocarModo img {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+#trocarModo img:hover {
+    transform: scale(1.1);
+}
+
+/* Logo central acima do container */
+.logo {
+    position: absolute;
+    top: -17px; /* ajuste a posição vertical */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 350px; /* ajuste conforme necessário */
+    z-index: 999;
+}
+
+/* Caixa principal */
+.container {
+    background-color: #eeeeff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 255, 0.3);
+    max-width: 500px;
+    width: 90%;
+    z-index: 998;
+}
+
+/* Restante do CSS (mantém igual ao que você tinha) */
+h3 {
+    color: #003366;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+#pergunta {
+    font-size: 16px;
+    color: #0044cc;
+    margin-bottom: 20px;
+}
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+#sim, #nao {
+    background: linear-gradient(90deg, #00aaff 0%, #0055cc 100%);
+    width: 130px;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+#sim:hover, #nao:hover {
+    background: linear-gradient(90deg, #003399 0%, #001f66 100%);
+    transform: translateY(-3px);
+}
+#iniciar {
+    margin: 30px auto 0 auto;
+    background: linear-gradient(90deg, #00aaff 0%, #0055cc 100%);
+    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.4);
+    border-radius: 50px;
+    width: 180px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: block;
+}
+#iniciar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.5);
+}
+#resultado {
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #0044cc;
+}
